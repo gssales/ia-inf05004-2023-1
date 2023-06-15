@@ -21,6 +21,8 @@ public:
   static State *createInitialState(std::string description);
   void printState();
   int getPosition(int index);
+  int getEmptyPosition();
+  bool isGoal();
 };
 
 #endif
