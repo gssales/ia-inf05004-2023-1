@@ -1,23 +1,27 @@
-all: main
-	g++ state.o main.o -o main
+CXX=g++
+CXXFLAGS=-std=c++20 -Wall -Wextra -Werror
+BIN=main
 
-main: state main.cpp
-	g++ main.cpp -c
+SRC=$(wildcard *.cpp)
+OBJ=$(SRC:%.cpp=%.o)
 
-state: state.cpp
-	g++ state.cpp -c
+8_TEST = 0 6 1 7 4 2 3 8 5, 5 0 2 6 4 8 1 7 3, 2 4 7 0 3 6 8 1 5
 
-run8-bfs:
-	./main -bfs 0 1 2 3 4 5 6 7 8
+15_TEST = 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14
 
-run8m-bfs:
-	./main -bfs 0 1 2 3 4 5 6 7 8, 8 7 6 5 4 3 2 1 0
+ALGORITHM=bfs
 
-run15-bfs:
-	./main -bfs 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+all: $(OBJ)
+	$(CXX) -o $(BIN) $^
 
-run15m-bfs:
-	./main -bfs 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15, 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
+%.o: %.c
+	$(CXX) $@ -c $<
 
 clean:
-	rm -rf *.o main
+	rm -f *.o $(BIN)
+
+run8:
+	./$(BIN) -$(ALGORITHM) $(8_TEST)
+
+run15:
+	./$(BIN) -$(ALGORITHM) $(15_TEST)

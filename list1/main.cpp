@@ -2,8 +2,10 @@
 #include <sstream>
 #include <iostream>
 #include <list>
+#include <chrono>
 
 #include "state.h"
+#include "search.h"
 
 std::list<State *> extractInitialStates(int argc, char *argv[])
 {
@@ -41,16 +43,26 @@ int main(int argc, char *argv[])
 
   std::list<State *> initialStates = extractInitialStates(argc, argv);
 
-  std::cout << "Algorithm: " << algorithm << std::endl
-            << std::endl;
-
-  for (std::list<State *>::iterator it = initialStates.begin(); it != initialStates.end(); ++it)
+  for (auto &initialState : initialStates)
   {
-    State *initialState = *it;
+    auto start = std::chrono::high_resolution_clock::now();
 
-    initialState->printState();
+    SearchResult result = search<BFSOpenList>(initialState);
 
-    std::cout << std::endl;
+    auto end = std::chrono::high_resolution_clock::now();
+
+    if (result.state != nullptr)
+    {
+      std::chrono::duration<double, std::milli> fp_ms = end - start;
+      auto timeInSeconds = fp_ms.count() / 1000;
+
+      std::cout << result.expandedNodes << ",";
+      std::cout << result.state->getDepth() << ",";
+      std::cout << timeInSeconds << ",";
+      // TODO: heuristic value for start state
+      // TODO: mean heuristic value for all states
+      std::cout << std::endl;
+    }
   }
 
   return 0;
