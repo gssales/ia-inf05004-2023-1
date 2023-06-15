@@ -8,11 +8,21 @@
 struct Node8 {
   uint32_t data;
   uint16_t level;
-  uint16_t value;
+  uint16_t cost; //g()
+  uint16_t estimate; //h()
+};
+
+enum Action : uint8_t {
+  UP,
+  LEFT,
+  DOWN,
+  RIGHT
 };
 
 Node8 CreateNode8(char* initial_state);
 
 void PrintState8(uint32_t data);
+
+void BFS8Puzzle(char* initial_state);
 
 #endif // _8PUZZLE_H
