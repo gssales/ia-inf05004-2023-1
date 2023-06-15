@@ -1,28 +1,57 @@
 #include <string>
 #include <sstream>
 #include <iostream>
+#include <list>
 
 #include "state.h"
 
-// ./main -bfs 0 1 2 3 4 5 6 7 8
+std::list<State *> extractInitialStates(int argc, char *argv[])
+{
+  std::list<State *> initialStates;
+  std::stringstream ss;
+
+  for (int i = 2; i < argc; i++)
+  {
+    std::string arg = argv[i];
+
+    if (arg.find(',') != std::string::npos)
+    {
+      arg.erase(std::remove(arg.begin(), arg.end(), ','), arg.end());
+      ss << arg;
+
+      State *initialState = State::createInitialState(ss.str());
+      initialStates.push_back(initialState);
+      ss = std::stringstream();
+    }
+    else
+    {
+      ss << argv[i] << " ";
+    }
+  }
+
+  State *initialState = State::createInitialState(ss.str());
+  initialStates.push_back(initialState);
+
+  return initialStates;
+}
 
 int main(int argc, char *argv[])
 {
   std::string algorithm = argv[1];
 
-  std::stringstream ss;
+  std::list<State *> initialStates = extractInitialStates(argc, argv);
 
-  for (int i = 2; i < argc; i++)
+  std::cout << "Algorithm: " << algorithm << std::endl
+            << std::endl;
+
+  for (std::list<State *>::iterator it = initialStates.begin(); it != initialStates.end(); ++it)
   {
-    ss << argv[i] << " ";
+    State *initialState = *it;
+
+    initialState->printState();
+
+    std::cout << std::endl;
   }
-
-  std::string description = ss.str();
-
-  std::cout << "Algorithm: " << algorithm << std::endl;
-
-  State *initialState8 = State::createInitialState(description);
-  initialState8->printState();
 
   return 0;
 }
