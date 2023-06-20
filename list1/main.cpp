@@ -59,9 +59,8 @@ int main(int argc, char *argv[])
       std::cout << result.expandedNodes << ",";
       std::cout << result.state->getDepth() << ",";
       std::cout << timeInSeconds << ",";
-      // TODO: heuristic value for start state
       // TODO: mean heuristic value for all states
-      std::cout << std::endl;
+      std::cout << initialState->manhattanDistance() << std::endl;
     }
   }
 

@@ -44,7 +44,7 @@ private:
   State *moveRight();
 
 public:
-  static State *createInitialState(const std::string& description);
+  static State *createInitialState(const std::string &description);
   void printState();
   int getPosition(int index) const;
   int getEmptyPosition();
@@ -52,6 +52,7 @@ public:
   std::set<State *> getChildren();
   unsigned long long getState() const;
   int getDepth();
+  int manhattanDistance();
 };
 
 #endif

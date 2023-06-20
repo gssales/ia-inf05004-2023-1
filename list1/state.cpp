@@ -312,3 +312,41 @@ int State::getDepth()
 
   return depth;
 }
+
+int State::manhattanDistance()
+{
+  int distance = 0;
+  unsigned long long goalState = this->puzzleType == PUZZLE_8 ? GOAL_8 : GOAL_15;
+  int width = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+
+  for (int i = 0; i < width * width; i++)
+  {
+    int value = this->getPosition(i);
+
+    if (value == 0)
+    {
+      continue;
+    }
+
+    int goalPosition = 0;
+
+    for (int j = 0; j < width * width; j++)
+    {
+      if (((goalState >> (j * 4)) & 0xF) == value)
+      {
+        goalPosition = j;
+        break;
+      }
+    }
+
+    int x = i % width;
+    int y = i / width;
+
+    int goalX = goalPosition % width;
+    int goalY = goalPosition / width;
+
+    distance += abs(x - goalX) + abs(y - goalY);
+  }
+
+  return distance;
+}
