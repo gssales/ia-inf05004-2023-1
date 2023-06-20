@@ -5,12 +5,17 @@ void BFSOpenList::push(State *state)
   this->queue.push(state);
 }
 
-State *BFSOpenList::pop()
+PopResult BFSOpenList::pop()
 {
   State *state = this->queue.front();
   this->queue.pop();
 
-  return state;
+  PopResult result{};
+
+  result.state = state;
+  result.cost = 0;
+
+  return result;
 }
 
 bool BFSOpenList::isEmpty()

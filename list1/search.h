@@ -4,6 +4,7 @@
 #include <set>
 #include <queue>
 #include <iostream>
+#include <vector>
 
 #include "state.h"
 
@@ -11,12 +12,19 @@ struct SearchResult
 {
   State *state;
   int expandedNodes;
+  std::vector<int> heuristicValues;
+};
+
+struct PopResult
+{
+  State *state;
+  int cost;
 };
 
 class OpenList
 {
   virtual void push(State *state) = 0;
-  virtual State *pop() = 0;
+  virtual PopResult pop() = 0;
   virtual bool isEmpty() = 0;
 };
 
@@ -27,7 +35,7 @@ private:
 
 public:
   void push(State *state) override;
-  State *pop() override;
+  PopResult pop() override;
   bool isEmpty() override;
 };
 
@@ -45,10 +53,13 @@ SearchResult search(State *initialState)
 
   while (!openList.isEmpty())
   {
-    State *state = openList.pop();
+    PopResult res = openList.pop();
+    State *state = res.state;
 
     if (!closedList.contains(state->getState()))
     {
+      result.heuristicValues.push_back(res.cost);
+
       closedList.insert(state->getState());
 
       if (state->isGoal())

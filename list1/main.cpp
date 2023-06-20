@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include <chrono>
+#include <numeric>
 
 #include "state.h"
 #include "search.h"
@@ -59,7 +60,7 @@ int main(int argc, char *argv[])
       std::cout << result.expandedNodes << ",";
       std::cout << result.state->getDepth() << ",";
       std::cout << timeInSeconds << ",";
-      // TODO: mean heuristic value for all states
+      std::cout << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0) / result.heuristicValues.size() << ",";
       std::cout << initialState->manhattanDistance() << std::endl;
     }
   }
