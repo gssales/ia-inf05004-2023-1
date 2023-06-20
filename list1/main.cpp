@@ -41,14 +41,23 @@ std::list<State *> extractInitialStates(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
   std::string algorithm = argv[1];
+  algorithm.erase(std::remove(algorithm.begin(), algorithm.end(), '-'), algorithm.end());
 
   std::list<State *> initialStates = extractInitialStates(argc, argv);
 
   for (auto &initialState : initialStates)
   {
+    SearchResult result;
     auto start = std::chrono::high_resolution_clock::now();
 
-    SearchResult result = search<BFSOpenList>(initialState);
+    if (algorithm == "bfs")
+    {
+      result = search<BFSOpenList>(initialState);
+    }
+    else if (algorithm == "astar")
+    {
+      result = search<AStarOpenList>(initialState);
+    }
 
     auto end = std::chrono::high_resolution_clock::now();
 
@@ -60,7 +69,7 @@ int main(int argc, char *argv[])
       std::cout << result.expandedNodes << ",";
       std::cout << result.state->getDepth() << ",";
       std::cout << timeInSeconds << ",";
-      std::cout << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0) / result.heuristicValues.size() << ",";
+      std::cout << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0.0) / result.heuristicValues.size() << ",";
       std::cout << initialState->manhattanDistance() << std::endl;
     }
   }

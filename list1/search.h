@@ -39,6 +39,30 @@ public:
   bool isEmpty() override;
 };
 
+struct PriorityState
+{
+  State *state;
+  int cost;
+
+  PriorityState(State *state, int cost) : state(state), cost(cost) {}
+
+  bool operator<(const PriorityState &other) const
+  {
+    return this->cost > other.cost;
+  }
+};
+
+class AStarOpenList : public OpenList
+{
+private:
+  std::priority_queue<PriorityState> queue;
+
+public:
+  void push(State *state) override;
+  PopResult pop() override;
+  bool isEmpty() override;
+};
+
 template <class T>
 SearchResult search(State *initialState)
 {
