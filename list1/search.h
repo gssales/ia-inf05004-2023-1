@@ -138,6 +138,8 @@ SearchResult search(State *initialState)
 
   openList.push(initialState);
 
+  result.heuristicValues.push_back(initialState->manhattanDistance());
+
   while (!openList.isEmpty())
   {
     PopResult res = openList.pop();
@@ -145,8 +147,6 @@ SearchResult search(State *initialState)
 
     if (!closedList.contains(state->getState()))
     {
-      result.heuristicValues.push_back(res.cost);
-
       closedList.insert(state->getState());
 
       if (state->isGoal())
@@ -159,6 +159,7 @@ SearchResult search(State *initialState)
 
       for (auto it : children)
       {
+        result.heuristicValues.push_back(it->manhattanDistance());
         openList.push(it);
       }
 
