@@ -9,7 +9,7 @@ OBJ=$(SRC:%.cpp=%.o)
 
 15_TEST = 7 11 8 3 14 0 6 15 1 4 13 9 5 12 2 10, 12 9 0 6 8 3 5 14 2 4 11 7 10 1 15 13, 13 0 9 12 11 6 3 5 15 8 1 10 4 14 2 7
 
-ALGORITHM=idfs
+ALGORITHM=astar
 
 all: $(OBJ)
 	$(CXX) -o $(BIN) $^

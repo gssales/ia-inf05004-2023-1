@@ -256,6 +256,7 @@ State *State::moveUp()
 
   nextState->action = UP;
   nextState->parent = this;
+  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -270,6 +271,7 @@ State *State::moveDown()
 
   nextState->action = DOWN;
   nextState->parent = this;
+  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -282,6 +284,7 @@ State *State::moveLeft()
 
   nextState->action = LEFT;
   nextState->parent = this;
+  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -294,6 +297,7 @@ State *State::moveRight()
 
   nextState->action = RIGHT;
   nextState->parent = this;
+  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
