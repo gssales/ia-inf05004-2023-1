@@ -149,28 +149,28 @@ unsigned long long State::getState() const
   return this->state;
 }
 
-std::set<State *> State::getChildren()
+std::list<State *> State::getChildren()
 {
-  std::set<State *> children;
+  std::list<State *> children;
+
+  if (this->canMoveUp())
+  {
+    children.push_back(this->moveUp());
+  }
 
   if (this->canMoveLeft())
   {
-    children.insert(this->moveLeft());
+    children.push_back(this->moveLeft());
   }
 
   if (this->canMoveRight())
   {
-    children.insert(this->moveRight());
-  }
-
-  if (this->canMoveUp())
-  {
-    children.insert(this->moveUp());
+    children.push_back(this->moveRight());
   }
 
   if (this->canMoveDown())
   {
-    children.insert(this->moveDown());
+    children.push_back(this->moveDown());
   }
 
   return children;

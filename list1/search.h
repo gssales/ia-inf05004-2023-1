@@ -1,10 +1,11 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 
-#include <set>
+#include <list>
 #include <queue>
 #include <iostream>
 #include <vector>
+#include <set>
 
 #include "state.h"
 
@@ -43,19 +44,81 @@ struct PriorityState
 {
   State *state;
   int cost;
+  unsigned long long insertionOrder;
 
-  PriorityState(State *state, int cost) : state(state), cost(cost) {}
+  PriorityState(State *state, int cost, unsigned long long insertionOrder) : state(state), cost(cost), insertionOrder(insertionOrder) {}
 
-  bool operator<(const PriorityState &other) const
+  bool operator<(const PriorityState &rhs) const
   {
-    return this->cost > other.cost;
+    return this->insertionOrder < rhs.insertionOrder;
+  }
+};
+
+struct AStarPriorityComparator
+{
+  bool operator()(const PriorityState &lhs, const PriorityState &rhs) const
+  {
+    // Compare the f values of two states
+    if (lhs.cost != rhs.cost)
+    {
+      return lhs.cost > rhs.cost;
+    }
+
+    // If the f values are equal, compare the h values
+    auto thisMD = lhs.state->manhattanDistance();
+    auto otherMD = rhs.state->manhattanDistance();
+
+    if (thisMD != otherMD)
+    {
+      return thisMD > otherMD;
+    }
+
+    // If the h values are equal, LIFO
+    return lhs.insertionOrder < rhs.insertionOrder;
   }
 };
 
 class AStarOpenList : public OpenList
 {
 private:
-  std::priority_queue<PriorityState> queue;
+  std::priority_queue<PriorityState, std::vector<PriorityState>, AStarPriorityComparator> queue;
+  unsigned long long insertionOrderCounter = 0;
+
+public:
+  void push(State *state) override;
+  PopResult pop() override;
+  bool isEmpty() override;
+};
+
+struct GBFSPriorityComparator
+{
+  bool operator()(const PriorityState &lhs, const PriorityState &rhs) const
+  {
+    // Compare the h values of two states
+    if (lhs.cost != rhs.cost)
+    {
+      return lhs.cost > rhs.cost;
+    }
+
+    // If the h values are equal, compare the g values
+    int lhsDepth = lhs.state->getDepth();
+    int rhsDepth = rhs.state->getDepth();
+
+    if (lhsDepth != rhsDepth)
+    {
+      return lhsDepth < rhsDepth;
+    }
+
+    // If the g values are equal, LIFO
+    return lhs.insertionOrder < rhs.insertionOrder;
+  }
+};
+
+class GBFSOpenList : public OpenList
+{
+private:
+  std::priority_queue<PriorityState, std::vector<PriorityState>, GBFSPriorityComparator> queue;
+  unsigned long long insertionOrderCounter = 0;
 
 public:
   void push(State *state) override;
@@ -92,7 +155,7 @@ SearchResult search(State *initialState)
         break;
       }
 
-      std::set<State *> children = state->getChildren();
+      std::list<State *> children = state->getChildren();
 
       for (auto it : children)
       {

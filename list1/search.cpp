@@ -26,7 +26,7 @@ bool BFSOpenList::isEmpty()
 void AStarOpenList::push(State *state)
 {
   int cost = state->getDepth() + state->manhattanDistance();
-  PriorityState priorityState(state, cost);
+  PriorityState priorityState(state, cost, this->insertionOrderCounter++);
   this->queue.push(priorityState);
 }
 
@@ -44,6 +44,31 @@ PopResult AStarOpenList::pop()
 }
 
 bool AStarOpenList::isEmpty()
+{
+  return this->queue.empty();
+}
+
+void GBFSOpenList::push(State *state)
+{
+  int cost = state->manhattanDistance();
+  PriorityState priorityState(state, cost, this->insertionOrderCounter++);
+  this->queue.push(priorityState);
+}
+
+PopResult GBFSOpenList::pop()
+{
+  PriorityState priorityState = this->queue.top();
+  this->queue.pop();
+
+  PopResult result{};
+
+  result.state = priorityState.state;
+  result.cost = priorityState.cost;
+
+  return result;
+}
+
+bool GBFSOpenList::isEmpty()
 {
   return this->queue.empty();
 }

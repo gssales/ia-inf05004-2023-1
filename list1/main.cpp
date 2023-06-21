@@ -58,6 +58,10 @@ int main(int argc, char *argv[])
     {
       result = search<AStarOpenList>(initialState);
     }
+    else if (algorithm == "gbfs")
+    {
+      result = search<GBFSOpenList>(initialState);
+    }
 
     auto end = std::chrono::high_resolution_clock::now();
 

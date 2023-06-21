@@ -2,7 +2,7 @@
 #define STATE_H
 
 #include <string>
-#include <set>
+#include <list>
 
 enum PuzzleType
 {
@@ -49,7 +49,7 @@ public:
   int getPosition(int index) const;
   int getEmptyPosition();
   bool isGoal();
-  std::set<State *> getChildren();
+  std::list<State *> getChildren();
   unsigned long long getState() const;
   int getDepth();
   int manhattanDistance();
