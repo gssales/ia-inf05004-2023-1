@@ -169,4 +169,6 @@ SearchResult search(State *initialState)
   return result;
 }
 
+SearchResult iterativeDeepeningSearch(State *initialState, long long maxDepth = LLONG_MAX);
+
 #endif

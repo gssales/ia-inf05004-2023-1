@@ -72,3 +72,60 @@ bool GBFSOpenList::isEmpty()
 {
   return this->queue.empty();
 }
+
+SearchResult depthLimitedSearch(State *state, unsigned long long maxDepth)
+{
+  SearchResult result{};
+
+  if (state->isGoal())
+  {
+    result.state = state;
+
+    return result;
+  }
+
+  if (maxDepth == 0)
+  {
+    return result;
+  }
+
+  auto children = state->getChildren();
+  result.expandedNodes++;
+
+  for (State *child : children)
+  {
+    auto innerResult = depthLimitedSearch(child, maxDepth - 1);
+
+    result.expandedNodes += innerResult.expandedNodes;
+
+    if (innerResult.state != nullptr)
+    {
+      result.state = innerResult.state;
+      break;
+    }
+  }
+
+  return result;
+}
+
+SearchResult iterativeDeepeningSearch(State *initialState, long long maxDepth)
+{
+  SearchResult result{};
+
+  for (long long depth = 0; depth <= maxDepth; depth++)
+  {
+    auto innerResult = depthLimitedSearch(initialState, depth);
+
+    result.expandedNodes += innerResult.expandedNodes;
+
+    if (innerResult.state != nullptr)
+    {
+      result.state = innerResult.state;
+      break;
+    }
+  }
+
+  result.heuristicValues.push_back(0);
+
+  return result;
+}

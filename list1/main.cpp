@@ -62,6 +62,10 @@ int main(int argc, char *argv[])
     {
       result = search<GBFSOpenList>(initialState);
     }
+    else if (algorithm == "idfs")
+    {
+      result = iterativeDeepeningSearch(initialState);
+    }
 
     auto end = std::chrono::high_resolution_clock::now();
 
