@@ -67,6 +67,10 @@ int main(int argc, char *argv[])
     {
       result = iterativeDeepeningSearch(initialState);
     }
+    else if (algorithm == "idastar")
+    {
+      result = idaStarSearch(initialState);
+    }
 
     auto end = std::chrono::high_resolution_clock::now();
 

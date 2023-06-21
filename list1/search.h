@@ -171,5 +171,6 @@ SearchResult search(State *initialState)
 }
 
 SearchResult iterativeDeepeningSearch(State *initialState, long long maxDepth = LLONG_MAX);
+SearchResult idaStarSearch(State *initialState);
 
 #endif

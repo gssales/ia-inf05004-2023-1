@@ -129,3 +129,87 @@ SearchResult iterativeDeepeningSearch(State *initialState, long long maxDepth)
 
   return result;
 }
+
+struct IDAstarReturn
+{
+  SearchResult result;
+  long long maxDepth;
+};
+
+IDAstarReturn idaStarRecursive(State *state, long long maxDepth)
+{
+  int fn = state->getDepth() + state->manhattanDistance();
+
+  if (fn > maxDepth)
+  {
+    IDAstarReturn result{};
+    result.maxDepth = fn;
+    return result;
+  }
+
+  if (state->isGoal())
+  {
+    IDAstarReturn result{};
+    result.result.state = state;
+    result.maxDepth = LLONG_MIN;
+    return result;
+  }
+
+  long long nextLimit = LLONG_MAX;
+
+  auto children = state->getChildren();
+
+  IDAstarReturn result{};
+
+  result.result.expandedNodes++;
+
+  for (State *child : children)
+  {
+    result.result.heuristicValues.push_back(child->manhattanDistance());
+
+    auto innerResult = idaStarRecursive(child, maxDepth);
+
+    result.result.expandedNodes += innerResult.result.expandedNodes;
+    result.result.heuristicValues.insert(result.result.heuristicValues.end(), innerResult.result.heuristicValues.begin(), innerResult.result.heuristicValues.end());
+
+    if (innerResult.result.state != nullptr)
+    {
+      result.maxDepth = LLONG_MIN;
+      result.result.state = innerResult.result.state;
+      return result;
+    }
+
+    nextLimit = std::min(nextLimit, innerResult.maxDepth);
+  }
+
+  result.maxDepth = nextLimit;
+
+  return result;
+}
+
+SearchResult idaStarSearch(State *initialState)
+{
+  long long maxDepth = initialState->manhattanDistance();
+
+  SearchResult result{};
+
+  result.heuristicValues.push_back(maxDepth);
+
+  while (maxDepth != LLONG_MIN)
+  {
+    auto innerResult = idaStarRecursive(initialState, maxDepth);
+
+    result.expandedNodes += innerResult.result.expandedNodes;
+    result.heuristicValues.insert(result.heuristicValues.end(), innerResult.result.heuristicValues.begin(), innerResult.result.heuristicValues.end());
+
+    if (innerResult.result.state != nullptr)
+    {
+      result.state = innerResult.result.state;
+      break;
+    }
+
+    maxDepth = innerResult.maxDepth;
+  }
+
+  return result;
+}
