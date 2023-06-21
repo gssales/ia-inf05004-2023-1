@@ -23,7 +23,7 @@ std::string actionToString(Action action)
     return "LEFT";
   case RIGHT:
     return "RIGHT";
-  case NONE:
+  default:
     return "NONE";
   }
 }
@@ -320,7 +320,7 @@ int State::getDepth()
 int State::manhattanDistance()
 {
   int distance = 0;
-  unsigned long long goalState = this->puzzleType == PUZZLE_8 ? GOAL_8 : GOAL_15;
+  // unsigned long long goalState = this->puzzleType == PUZZLE_8 ? GOAL_8 : GOAL_15;
   int width = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   for (int i = 0; i < width * width; i++)
@@ -332,16 +332,16 @@ int State::manhattanDistance()
       continue;
     }
 
-    int goalPosition = 0;
+    int goalPosition = value;
 
-    for (int j = 0; j < width * width; j++)
+    /*for (int j = 0; j < width * width; j++)
     {
       if (((goalState >> (j * 4)) & 0xF) == value)
       {
         goalPosition = j;
         break;
       }
-    }
+    }*/
 
     int x = i % width;
     int y = i / width;
