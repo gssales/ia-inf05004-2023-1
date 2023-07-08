@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
     if (algorithm == "bfs")
     {
       result = search<BFSOpenList>(initialState);
-      result.heuristicValues = std::vector<int>(1, 0);
+      result.heuristicValues = std::vector<unsigned char>(1, 0);
     }
     else if (algorithm == "astar")
     {
@@ -83,7 +83,10 @@ int main(int argc, char *argv[])
       std::cout << result.state->getDepth() << ",";
       std::cout << timeInSeconds << ",";
       std::cout << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0.0) / result.heuristicValues.size() << ",";
-      std::cout << initialState->manhattanDistance() << std::endl;
+      std::cout << (int)initialState->getHeuristicValue() << std::endl;
+    }
+    else {
+      std::cout << "-,-,-,-,-" << std::endl;
     }
   }
 

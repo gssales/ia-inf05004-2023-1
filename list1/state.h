@@ -1,16 +1,19 @@
 #ifndef STATE_H
 #define STATE_H
 
+/**
+ * Sum of set bits in each state
+ * Puzzle8 = 13
+ * Puzzle15 = 32
+*/
+#define PUZZLE_8 13
+#define PUZZLE_15 32
+
 #include <string>
 #include <list>
 
-enum PuzzleType
-{
-  PUZZLE_8,
-  PUZZLE_15
-};
 
-enum Action
+enum Action : unsigned char
 {
   UP,
   DOWN,
@@ -24,19 +27,17 @@ std::string actionToString(Action action);
 class State
 {
 private:
-  PuzzleType puzzleType;
-  unsigned long long state;
-  State *parent;
-  Action action;
-
-  std::string createBoard();
+  unsigned long long state; // 8 B
+  unsigned int depth; // 4 B
+  unsigned char hValue; // 1 B
+  Action action; // 1B
 
   bool canMoveUp();
   bool canMoveDown();
   bool canMoveLeft();
   bool canMoveRight();
 
-  unsigned long long swap(int newEmpty);
+  unsigned long long swap(unsigned char newEmpty);
 
   State *moveUp();
   State *moveDown();
@@ -44,14 +45,16 @@ private:
   State *moveRight();
 
 public:
+  char getPuzzleType();
   static State *createInitialState(const std::string &description);
   void printState();
-  int getPosition(int index) const;
-  int getEmptyPosition();
+  unsigned char getPosition(int index) const;
+  unsigned char getEmptyPosition();
   bool isGoal();
   std::list<State *> getChildren();
-  unsigned long long getState() const;
-  int getDepth();
+  unsigned long long getState();
+  unsigned int getDepth();
+  unsigned char getHeuristicValue();
   int manhattanDistance();
 };
 

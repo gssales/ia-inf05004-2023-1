@@ -14,7 +14,7 @@ struct SearchResult
 {
   State *state;
   int expandedNodes;
-  std::vector<int> heuristicValues;
+  std::vector<unsigned char> heuristicValues;
 };
 
 struct PopResult
@@ -139,7 +139,7 @@ SearchResult search(State *initialState)
 
   openList.push(initialState);
 
-  result.heuristicValues.push_back(initialState->manhattanDistance());
+  result.heuristicValues.push_back(initialState->getHeuristicValue());
 
   while (!openList.isEmpty())
   {
@@ -160,7 +160,7 @@ SearchResult search(State *initialState)
 
       for (auto it : children)
       {
-        result.heuristicValues.push_back(it->manhattanDistance());
+        result.heuristicValues.push_back(it->getHeuristicValue());
         openList.push(it);
       }
 
