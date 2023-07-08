@@ -83,8 +83,8 @@ int main(int argc, char *argv[])
       std::cout << result.state->getDepth() << ",";
       std::cout << timeInSeconds << ",";
       std::cout << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0.0) / result.heuristicValues.size() << ",";
-      std::cout << initialState->manhattanDistance() << std::endl;
-    }
+      std::cout << (int)initialState->getHeuristicValue() << std::endl;
+    }    
   }
 
   return 0;

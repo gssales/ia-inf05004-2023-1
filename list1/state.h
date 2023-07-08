@@ -4,13 +4,7 @@
 #include <string>
 #include <list>
 
-enum PuzzleType
-{
-  PUZZLE_8,
-  PUZZLE_15
-};
-
-enum Action
+enum Action : unsigned char
 {
   UP,
   DOWN,
@@ -24,12 +18,10 @@ std::string actionToString(Action action);
 class State
 {
 private:
-  PuzzleType puzzleType;
-  unsigned long long state;
-  State *parent;
-  Action action;
-
-  std::string createBoard();
+  unsigned long long state; // 8 B
+  unsigned int depth; // 4 B
+  unsigned char hValue; // 1 B
+  Action action; // 1B
 
   bool canMoveUp();
   bool canMoveDown();
@@ -42,6 +34,7 @@ private:
   State *moveDown();
   State *moveLeft();
   State *moveRight();
+  int manhattanDistance();
 
 public:
   static State *createInitialState(const std::string &description);
@@ -51,8 +44,9 @@ public:
   bool isGoal();
   std::list<State *> getChildren();
   unsigned long long getState() const;
-  int getDepth();
-  int manhattanDistance();
+  char getPuzzleType();
+  unsigned int getDepth();
+  int getHeuristicValue();
 };
 
 #endif

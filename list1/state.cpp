@@ -4,9 +4,13 @@
 #include <list>
 #include <sstream>
 #include <iomanip>
+#include <bit>
 
 const unsigned long long GOAL_8 = 0x0000000876543210;
 const unsigned long long GOAL_15 = 0xFEDCBA9876543210;
+
+const char PUZZLE_8 = 13;
+const char PUZZLE_15 = 32;
 
 const short PUZZLE_8_WIDTH = 3;
 const short PUZZLE_15_WIDTH = 4;
@@ -23,7 +27,7 @@ std::string actionToString(Action action)
     return "LEFT";
   case RIGHT:
     return "RIGHT";
-  case NONE:
+  default:
     return "NONE";
   }
 }
@@ -31,9 +35,7 @@ std::string actionToString(Action action)
 std::list<int> extractPositions(const std::string &description)
 {
   std::list<int> positions;
-
   std::stringstream ss(description);
-
   std::string token;
 
   while (std::getline(ss, token, ' '))
@@ -51,15 +53,6 @@ State *State::createInitialState(const std::string &description)
   // Extract puzzle size
   std::list<int> positions = extractPositions(description);
 
-  if (positions.size() == 9)
-  {
-    state->puzzleType = PUZZLE_8;
-  }
-  else
-  {
-    state->puzzleType = PUZZLE_15;
-  }
-
   // Create state
   int index = 0;
 
@@ -70,8 +63,8 @@ State *State::createInitialState(const std::string &description)
     index++;
   }
 
-  // Set parent and action
-  state->parent = nullptr;
+  state->depth = 0;
+  state->hValue = state->manhattanDistance();
   state->action = NONE;
 
   return state;
@@ -81,21 +74,21 @@ void State::printState()
 {
   std::stringstream ss;
 
-  ss << "Puzzle type: " << (this->puzzleType == PUZZLE_8 ? "8" : "15") << std::endl;
+  ss << "Puzzle type: " << (this->getPuzzleType() == PUZZLE_8 ? "8" : "15") << std::endl;
   ss << "Is goal: " << (this->isGoal() ? "true" : "false") << std::endl;
-  ss << "Empty position: " << this->getEmptyPosition() << std::endl;
+  ss << "Empty position: " << (int)this->getEmptyPosition() << std::endl;
   ss << "Action: " << actionToString(this->action) << std::endl;
   ss << "Depth: " << this->getDepth() << std::endl;
 
   ss << "Board: " << std::endl;
 
-  int size = this->puzzleType == PUZZLE_8 ? 9 : 16;
-  int width = this->puzzleType == PUZZLE_8 ? 3 : 4;
-  int positionWidth = this->puzzleType == PUZZLE_8 ? 1 : 2;
+  int size = this->getPuzzleType() == PUZZLE_8 ? 9 : 16;
+  int width = this->getPuzzleType() == PUZZLE_8 ? 3 : 4;
+  int positionWidth = this->getPuzzleType() == PUZZLE_8 ? 1 : 2;
 
   for (int i = 0; i < size; i++)
   {
-    int value = this->getPosition(i);
+    unsigned char value = this->getPosition(i);
 
     if (value == 0)
     {
@@ -126,7 +119,7 @@ int State::getPosition(int index) const
 
 int State::getEmptyPosition()
 {
-  int size = this->puzzleType == PUZZLE_8 ? 9 : 16;
+  int size = this->getPuzzleType() == PUZZLE_8 ? 9 : 16;
 
   for (int i = 0; i < size; i++)
   {
@@ -141,7 +134,7 @@ int State::getEmptyPosition()
 
 bool State::isGoal()
 {
-  return this->state == (this->puzzleType == PUZZLE_8 ? GOAL_8 : GOAL_15);
+  return this->state == (this->getPuzzleType() == PUZZLE_8 ? GOAL_8 : GOAL_15);
 }
 
 unsigned long long State::getState() const
@@ -179,7 +172,7 @@ std::list<State *> State::getChildren()
 bool State::canMoveUp()
 {
   int emptyPostion = this->getEmptyPosition();
-  int puzzleWidth = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int puzzleWidth = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   if (emptyPostion < puzzleWidth || this->action == DOWN)
   {
@@ -192,7 +185,7 @@ bool State::canMoveUp()
 bool State::canMoveDown()
 {
   int emptyPostion = this->getEmptyPosition();
-  int puzzleWidth = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int puzzleWidth = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   if (emptyPostion >= puzzleWidth * (puzzleWidth - 1) || this->action == UP)
   {
@@ -205,7 +198,7 @@ bool State::canMoveDown()
 bool State::canMoveLeft()
 {
   int emptyPostion = this->getEmptyPosition();
-  int puzzleWidth = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int puzzleWidth = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   if (emptyPostion % puzzleWidth == 0 || this->action == RIGHT)
   {
@@ -218,7 +211,7 @@ bool State::canMoveLeft()
 bool State::canMoveRight()
 {
   int emptyPostion = this->getEmptyPosition();
-  int puzzleWidth = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int puzzleWidth = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   if (emptyPostion % puzzleWidth == puzzleWidth - 1 || this->action == LEFT)
   {
@@ -241,37 +234,37 @@ unsigned long long State::swap(int newEmpty)
 
   nextState &= ~(0xFULL << (newEmpty * 4));
 
-  nextState &= (this->puzzleType == PUZZLE_8 ? 0x0000000FFFFFFFFFULL : 0xFFFFFFFFFFFFFFFFULL);
+  nextState &= (this->getPuzzleType() == PUZZLE_8 ? 0x0000000FFFFFFFFFULL : 0xFFFFFFFFFFFFFFFFULL);
 
   return nextState;
 }
 
 State *State::moveUp()
 {
-  int puzzleWidth = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int puzzleWidth = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   auto *nextState = new State();
 
   nextState->state = this->swap(this->getEmptyPosition() - puzzleWidth);
 
   nextState->action = UP;
-  nextState->parent = this;
-  nextState->puzzleType = this->puzzleType;
+  nextState->depth = this->depth +1;
+  nextState->hValue = nextState->manhattanDistance();
 
   return nextState;
 }
 
 State *State::moveDown()
 {
-  int puzzleWidth = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int puzzleWidth = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   auto *nextState = new State();
 
   nextState->state = this->swap(this->getEmptyPosition() + puzzleWidth);
 
   nextState->action = DOWN;
-  nextState->parent = this;
-  nextState->puzzleType = this->puzzleType;
+  nextState->depth = this->depth +1;
+  nextState->hValue = nextState->manhattanDistance();
 
   return nextState;
 }
@@ -283,8 +276,8 @@ State *State::moveLeft()
   nextState->state = this->swap(this->getEmptyPosition() - 1);
 
   nextState->action = LEFT;
-  nextState->parent = this;
-  nextState->puzzleType = this->puzzleType;
+  nextState->depth = this->depth +1;
+  nextState->hValue = nextState->manhattanDistance();
 
   return nextState;
 }
@@ -296,32 +289,31 @@ State *State::moveRight()
   nextState->state = this->swap(this->getEmptyPosition() + 1);
 
   nextState->action = RIGHT;
-  nextState->parent = this;
-  nextState->puzzleType = this->puzzleType;
+  nextState->depth = this->depth +1;
+  nextState->hValue = nextState->manhattanDistance();
 
   return nextState;
 }
 
-int State::getDepth()
+unsigned int State::getDepth()
 {
-  int depth = 0;
+  return this->depth;
+}
 
-  State *p = this->parent;
+int State::getHeuristicValue()
+{
+  return (int) this->hValue;
+}
 
-  while (p != nullptr)
-  {
-    depth++;
-    p = p->parent;
-  }
-
-  return depth;
+char State::getPuzzleType()
+{
+  return std::popcount(this->state);
 }
 
 int State::manhattanDistance()
 {
   int distance = 0;
-  unsigned long long goalState = this->puzzleType == PUZZLE_8 ? GOAL_8 : GOAL_15;
-  int width = this->puzzleType == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+  int width = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
 
   for (int i = 0; i < width * width; i++)
   {
@@ -332,16 +324,8 @@ int State::manhattanDistance()
       continue;
     }
 
-    int goalPosition = 0;
+    int goalPosition = value;
 
-    for (int j = 0; j < width * width; j++)
-    {
-      if (((goalState >> (j * 4)) & 0xF) == value)
-      {
-        goalPosition = j;
-        break;
-      }
-    }
 
     int x = i % width;
     int y = i / width;
