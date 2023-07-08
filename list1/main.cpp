@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
       std::cout << result.expandedNodes << ",";
       std::cout << result.state->getDepth() << ",";
       std::cout << std::fixed << std::setprecision(10) << timeInSeconds << ",";
-      std::cout << std::defaultfloat << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0.0) / result.heuristicValues.size() << ",";
+      std::cout << std::defaultfloat << std::setprecision(6) << std::accumulate(result.heuristicValues.begin(), result.heuristicValues.end(), 0.0) / result.heuristicValues.size() << ",";
       std::cout << (int)initialState->getHeuristicValue() << std::endl;
     }    
   }
