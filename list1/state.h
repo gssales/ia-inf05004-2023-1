@@ -35,6 +35,7 @@ private:
   State *moveLeft();
   State *moveRight();
   int manhattanDistance();
+  int manhattanDistance(int position);
 
 public:
   static State *createInitialState(const std::string &description);

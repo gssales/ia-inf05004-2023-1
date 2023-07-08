@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
   for (auto &initialState : initialStates)
   {
-    SearchResult result;
+    SearchResult result = SearchResult();
     auto start = std::chrono::high_resolution_clock::now();
 
     if (algorithm == "bfs")

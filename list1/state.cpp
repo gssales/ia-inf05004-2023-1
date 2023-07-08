@@ -249,7 +249,8 @@ State *State::moveUp()
 
   nextState->action = UP;
   nextState->depth = this->depth +1;
-  nextState->hValue = nextState->manhattanDistance();
+  // nextState->hValue = nextState->manhattanDistance();
+  nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
 
   return nextState;
 }
@@ -264,7 +265,8 @@ State *State::moveDown()
 
   nextState->action = DOWN;
   nextState->depth = this->depth +1;
-  nextState->hValue = nextState->manhattanDistance();
+  // nextState->hValue = nextState->manhattanDistance();
+  nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
 
   return nextState;
 }
@@ -277,7 +279,8 @@ State *State::moveLeft()
 
   nextState->action = LEFT;
   nextState->depth = this->depth +1;
-  nextState->hValue = nextState->manhattanDistance();
+  // nextState->hValue = nextState->manhattanDistance();
+  nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
 
   return nextState;
 }
@@ -290,7 +293,8 @@ State *State::moveRight()
 
   nextState->action = RIGHT;
   nextState->depth = this->depth +1;
-  nextState->hValue = nextState->manhattanDistance();
+  // nextState->hValue = nextState->manhattanDistance();
+  nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
 
   return nextState;
 }
@@ -337,4 +341,22 @@ int State::manhattanDistance()
   }
 
   return distance;
+}
+
+int State::manhattanDistance(int position)
+{
+  int width = this->getPuzzleType() == PUZZLE_8 ? PUZZLE_8_WIDTH : PUZZLE_15_WIDTH;
+
+  int value = this->getPosition(position);
+
+  if (value == 0)
+    return 0;
+
+  int x = position % width;
+  int y = position / width;
+
+  int goalX = value % width;
+  int goalY = value / width;
+
+  return abs(x - goalX) + abs(y - goalY);
 }

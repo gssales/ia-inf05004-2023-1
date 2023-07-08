@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++20 -Wall -Wextra -Werror
+CXXFLAGS=-std=c++20 -Wall -Wextra -Werror -O3
 BIN=main
 
 SRC=$(wildcard *.cpp)
@@ -20,8 +20,20 @@ all: $(OBJ)
 clean:
 	rm -f *.o $(BIN)
 
-run8:
-	./$(BIN) -$(ALGORITHM) $(8_TEST)
+astar:
+	./$(BIN) -astar $(8_TEST)
+	
+bfs:
+	./$(BIN) -bfs $(8_TEST)
+	
+idastar:
+	./$(BIN) -idastar $(8_TEST)
+	
+idfs:
+	./$(BIN) -idfs $(8_TEST)
+	
+gbfs:
+	./$(BIN) -gbfs $(8_TEST)
 
 run15:
-	./$(BIN) -$(ALGORITHM) $(15_TEST)
+	./$(BIN) -astar $(15_TEST)
