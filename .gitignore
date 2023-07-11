@@ -1,5 +1,2 @@
-main
-*.o
-
 .vscode
 .DS_Store
