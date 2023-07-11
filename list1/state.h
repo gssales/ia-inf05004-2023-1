@@ -20,8 +20,10 @@ class State
 private:
   unsigned long long state; // 8 B
   unsigned short depth; // 2 B
-  unsigned char hValue; // 1 B
   unsigned short cost; // 2 B
+  unsigned char hValue; // 1 B
+  unsigned char puzzleType; // 1 B
+  unsigned char empty; // 1 B
   Action action; // 1B
 
   bool canMoveUp();
@@ -43,6 +45,7 @@ public:
   void printState();
   int getPosition(int index) const;
   int getEmptyPosition();
+  int getEmpty();
   bool isGoal();
   std::list<State *> getChildren();
   unsigned long long getState() const;
