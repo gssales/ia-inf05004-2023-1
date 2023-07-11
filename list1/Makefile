@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++20 -Wall -Wextra -Werror -O3
+CXXFLAGS=-std=c++20 -Wall -Wextra -O3
 BIN=main
 
 SRC=$(wildcard *.cpp)
