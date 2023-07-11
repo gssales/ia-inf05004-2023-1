@@ -1,6 +1,32 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 
+/**
+ * search.h
+ * Este arquivo descreve as estruturas de dados e funções usadas para 
+ * implementar os diferentes algoritmos de busca
+ * 
+ * OpenList, BFSOpenList, AStarOpenList, GBFSOpenList
+ * - Implementam a estrutura de lista aberta para cada algoritmo de busca em 
+ * grafo
+ * 
+ * PriorityState
+ * - Estrutura temporária usada para ordenar um nodo inserido em uma fila de 
+ * prioridade
+ * 
+ * AStarPriorityComparator, GBFSPriorityComparator
+ * - Estrutura que implementa a função de comparação da fila de prioridades 
+ * para A* e GBFS
+ * 
+ * search<T>(State*)
+ * Função que implementa busca em grafo generalizada. Recebe como parametro um
+ * estado inicial e um tipo de OpenList. A implementação de OpenList que define
+ * qual algoritmo de busca é usado
+ * 
+ * iterativeDeepeningSearch e idaStarSearch
+ * Funções que implementação os algoritmos de busca iterativos.
+*/
+
 #include <list>
 #include <queue>
 #include <iostream>

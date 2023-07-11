@@ -1,6 +1,19 @@
 #ifndef STATE_H
 #define STATE_H
 
+/**
+ * state.h
+ * Este arquivo descreve a classe State que representa um nodo de grafo de busca.
+ * Propriedade:
+ * - state: unsigned long long  = estado do puzzle codificado em 8 bytes
+ * - depth       = profundidade em que esse nodo foi expandido
+ * - hValue      = valor da função heurística do nodo
+ * - cost        = custo do nodo, depth + hValue, usado pelo A*
+ * - puzzleType  = código do tipo de puzzle, 13 = 8puzzle, 32 = 15puzzle
+ * - empth       = indice da porsição vazia no estado
+ * - action      = última ação que expandiu esse estado
+*/
+
 #include <string>
 #include <list>
 
