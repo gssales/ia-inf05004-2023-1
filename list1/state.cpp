@@ -66,9 +66,9 @@ State *State::createInitialState(const std::string &description)
   }
 
   state->depth = 0;
+  state->puzzleType = std::popcount(state->state);
   state->hValue = state->manhattanDistance();
   state->cost = state->depth + state->hValue;
-  state->puzzleType = std::popcount(state->state);
   state->action = NONE;
 
   return state;
@@ -253,13 +253,13 @@ State *State::moveUp()
   unsigned char newEmpty = this->empty - puzzleWidth;
   nextState->state = this->swap(newEmpty);
 
+  nextState->puzzleType = this->puzzleType;
   nextState->action = UP;
   nextState->depth = this->depth +1;
   nextState->empty = newEmpty;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->empty) + nextState->manhattanDistance(this->empty);
   nextState->cost = nextState->depth + nextState->hValue;
-  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -273,13 +273,13 @@ State *State::moveDown()
   unsigned char newEmpty = this->empty + puzzleWidth;
   nextState->state = this->swap(newEmpty);
 
+  nextState->puzzleType = this->puzzleType;
   nextState->action = DOWN;
   nextState->depth = this->depth +1;
   nextState->empty = newEmpty;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->empty) + nextState->manhattanDistance(this->empty);
   nextState->cost = nextState->depth + nextState->hValue;
-  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -291,13 +291,13 @@ State *State::moveLeft()
   unsigned char newEmpty = this->empty - 1;
   nextState->state = this->swap(newEmpty);
 
+  nextState->puzzleType = this->puzzleType;
   nextState->action = LEFT;
   nextState->depth = this->depth +1;
   nextState->empty = newEmpty;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->empty) + nextState->manhattanDistance(this->empty);
   nextState->cost = nextState->depth + nextState->hValue;
-  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -309,13 +309,13 @@ State *State::moveRight()
   unsigned char newEmpty = this->empty + 1;
   nextState->state = this->swap(newEmpty);
 
+  nextState->puzzleType = this->puzzleType;
   nextState->action = RIGHT;
   nextState->depth = this->depth +1;
   nextState->empty = newEmpty;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->empty) + nextState->manhattanDistance(this->empty);
   nextState->cost = nextState->depth + nextState->hValue;
-  nextState->puzzleType = this->puzzleType;
 
   return nextState;
 }
@@ -354,14 +354,11 @@ int State::manhattanDistance()
       continue;
     }
 
-    int goalPosition = value;
-
-
     int x = i % width;
     int y = i / width;
 
-    int goalX = goalPosition % width;
-    int goalY = goalPosition / width;
+    int goalX = value % width;
+    int goalY = value / width;
 
     distance += abs(x - goalX) + abs(y - goalY);
   }
