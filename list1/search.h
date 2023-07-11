@@ -1,11 +1,38 @@
 #ifndef SEARCH_H
 #define SEARCH_H
 
+/**
+ * search.h
+ * Este arquivo descreve as estruturas de dados e funções usadas para 
+ * implementar os diferentes algoritmos de busca
+ * 
+ * OpenList, BFSOpenList, AStarOpenList, GBFSOpenList
+ * - Implementam a estrutura de lista aberta para cada algoritmo de busca em 
+ * grafo
+ * 
+ * PriorityState
+ * - Estrutura temporária usada para ordenar um nodo inserido em uma fila de 
+ * prioridade
+ * 
+ * AStarPriorityComparator, GBFSPriorityComparator
+ * - Estrutura que implementa a função de comparação da fila de prioridades 
+ * para A* e GBFS
+ * 
+ * search<T>(State*)
+ * Função que implementa busca em grafo generalizada. Recebe como parametro um
+ * estado inicial e um tipo de OpenList. A implementação de OpenList que define
+ * qual algoritmo de busca é usado
+ * 
+ * iterativeDeepeningSearch e idaStarSearch
+ * Funções que implementação os algoritmos de busca iterativos.
+*/
+
 #include <list>
 #include <queue>
 #include <iostream>
 #include <vector>
 #include <set>
+#include <climits>
 
 #include "state.h"
 
@@ -43,10 +70,9 @@ public:
 struct PriorityState
 {
   State *state;
-  int cost;
-  unsigned long long insertionOrder;
+  unsigned int insertionOrder;
 
-  PriorityState(State *state, int cost, unsigned long long insertionOrder) : state(state), cost(cost), insertionOrder(insertionOrder) {}
+  PriorityState(State *state, unsigned int insertionOrder) : state(state), insertionOrder(insertionOrder) {}
 
   bool operator<(const PriorityState &rhs) const
   {
@@ -59,18 +85,19 @@ struct AStarPriorityComparator
   bool operator()(const PriorityState &lhs, const PriorityState &rhs) const
   {
     // Compare the f values of two states
-    if (lhs.cost != rhs.cost)
+    auto thisCost = lhs.state->getCost();
+    auto otherCost = rhs.state->getCost();
+    if (thisCost != otherCost)
     {
-      return lhs.cost > rhs.cost;
+      return thisCost > otherCost;
     }
 
     // If the f values are equal, compare the h values
-    auto thisMD = lhs.state->manhattanDistance();
-    auto otherMD = rhs.state->manhattanDistance();
-
-    if (thisMD != otherMD)
+    auto thisHValue = lhs.state->getHeuristicValue();
+    auto otherHValue = rhs.state->getHeuristicValue();
+    if (thisHValue != otherHValue)
     {
-      return thisMD > otherMD;
+      return thisHValue > otherHValue;
     }
 
     // If the h values are equal, LIFO
@@ -82,7 +109,7 @@ class AStarOpenList : public OpenList
 {
 private:
   std::priority_queue<PriorityState, std::vector<PriorityState>, AStarPriorityComparator> queue;
-  unsigned long long insertionOrderCounter = 0;
+  unsigned int insertionOrderCounter = 0;
 
 public:
   void push(State *state) override;
@@ -95,9 +122,12 @@ struct GBFSPriorityComparator
   bool operator()(const PriorityState &lhs, const PriorityState &rhs) const
   {
     // Compare the h values of two states
-    if (lhs.cost != rhs.cost)
+    auto thisHValue = lhs.state->getHeuristicValue();
+    auto otherHValue = rhs.state->getHeuristicValue();
+
+    if (thisHValue != otherHValue)
     {
-      return lhs.cost > rhs.cost;
+      return thisHValue > otherHValue;
     }
 
     // If the h values are equal, compare the g values
@@ -138,7 +168,7 @@ SearchResult search(State *initialState)
 
   openList.push(initialState);
 
-  result.heuristicValues.push_back(initialState->manhattanDistance());
+  result.heuristicValues.push_back(initialState->getHeuristicValue());
 
   while (!openList.isEmpty())
   {
@@ -159,7 +189,7 @@ SearchResult search(State *initialState)
 
       for (auto it : children)
       {
-        result.heuristicValues.push_back(it->manhattanDistance());
+        result.heuristicValues.push_back(it->getHeuristicValue());
         openList.push(it);
       }
 

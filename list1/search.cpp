@@ -25,8 +25,7 @@ bool BFSOpenList::isEmpty()
 
 void AStarOpenList::push(State *state)
 {
-  int cost = state->getDepth() + state->manhattanDistance();
-  PriorityState priorityState(state, cost, this->insertionOrderCounter++);
+  PriorityState priorityState(state, this->insertionOrderCounter++);
   this->queue.push(priorityState);
 }
 
@@ -38,7 +37,7 @@ PopResult AStarOpenList::pop()
   PopResult result{};
 
   result.state = priorityState.state;
-  result.cost = priorityState.cost;
+  result.cost = priorityState.state->getCost();
 
   return result;
 }
@@ -50,8 +49,7 @@ bool AStarOpenList::isEmpty()
 
 void GBFSOpenList::push(State *state)
 {
-  int cost = state->manhattanDistance();
-  PriorityState priorityState(state, cost, this->insertionOrderCounter++);
+  PriorityState priorityState(state, this->insertionOrderCounter++);
   this->queue.push(priorityState);
 }
 
@@ -63,7 +61,7 @@ PopResult GBFSOpenList::pop()
   PopResult result{};
 
   result.state = priorityState.state;
-  result.cost = priorityState.cost;
+  result.cost = priorityState.state->getHeuristicValue();
 
   return result;
 }
@@ -138,7 +136,7 @@ struct IDAstarReturn
 
 IDAstarReturn idaStarRecursive(State *state, long long maxDepth)
 {
-  int fn = state->getDepth() + state->manhattanDistance();
+  int fn = state->getDepth() + state->getHeuristicValue();
 
   if (fn > maxDepth)
   {
@@ -165,7 +163,7 @@ IDAstarReturn idaStarRecursive(State *state, long long maxDepth)
 
   for (State *child : children)
   {
-    result.result.heuristicValues.push_back(child->manhattanDistance());
+    result.result.heuristicValues.push_back(child->getHeuristicValue());
 
     auto innerResult = idaStarRecursive(child, maxDepth);
 
@@ -189,7 +187,7 @@ IDAstarReturn idaStarRecursive(State *state, long long maxDepth)
 
 SearchResult idaStarSearch(State *initialState)
 {
-  long long maxDepth = initialState->manhattanDistance();
+  long long maxDepth = initialState->getHeuristicValue();
 
   SearchResult result{};
 
