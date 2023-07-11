@@ -65,6 +65,7 @@ State *State::createInitialState(const std::string &description)
 
   state->depth = 0;
   state->hValue = state->manhattanDistance();
+  state->cost = state->depth + state->hValue;
   state->action = NONE;
 
   return state;
@@ -251,6 +252,7 @@ State *State::moveUp()
   nextState->depth = this->depth +1;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
+  nextState->cost = nextState->depth + nextState->hValue;
 
   return nextState;
 }
@@ -267,6 +269,7 @@ State *State::moveDown()
   nextState->depth = this->depth +1;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
+  nextState->cost = nextState->depth + nextState->hValue;
 
   return nextState;
 }
@@ -281,6 +284,7 @@ State *State::moveLeft()
   nextState->depth = this->depth +1;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
+  nextState->cost = nextState->depth + nextState->hValue;
 
   return nextState;
 }
@@ -295,13 +299,19 @@ State *State::moveRight()
   nextState->depth = this->depth +1;
   // nextState->hValue = nextState->manhattanDistance();
   nextState->hValue = this->getHeuristicValue() - this->manhattanDistance(nextState->getEmptyPosition()) + nextState->manhattanDistance(this->getEmptyPosition());
+  nextState->cost = nextState->depth + nextState->hValue;
 
   return nextState;
 }
 
-unsigned int State::getDepth()
+unsigned short State::getDepth()
 {
   return this->depth;
+}
+
+unsigned short State::getCost()
+{
+  return this->cost;
 }
 
 int State::getHeuristicValue()

@@ -19,8 +19,9 @@ class State
 {
 private:
   unsigned long long state; // 8 B
-  unsigned int depth; // 4 B
+  unsigned short depth; // 2 B
   unsigned char hValue; // 1 B
+  unsigned short cost; // 2 B
   Action action; // 1B
 
   bool canMoveUp();
@@ -46,7 +47,8 @@ public:
   std::list<State *> getChildren();
   unsigned long long getState() const;
   char getPuzzleType();
-  unsigned int getDepth();
+  unsigned short getDepth();
+  unsigned short getCost();
   int getHeuristicValue();
 };
 

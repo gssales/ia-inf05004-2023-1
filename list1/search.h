@@ -44,10 +44,9 @@ public:
 struct PriorityState
 {
   State *state;
-  int cost;
-  unsigned long long insertionOrder;
+  unsigned int insertionOrder;
 
-  PriorityState(State *state, int cost, unsigned long long insertionOrder) : state(state), cost(cost), insertionOrder(insertionOrder) {}
+  PriorityState(State *state, unsigned int insertionOrder) : state(state), insertionOrder(insertionOrder) {}
 
   bool operator<(const PriorityState &rhs) const
   {
@@ -60,18 +59,19 @@ struct AStarPriorityComparator
   bool operator()(const PriorityState &lhs, const PriorityState &rhs) const
   {
     // Compare the f values of two states
-    if (lhs.cost != rhs.cost)
+    auto thisCost = lhs.state->getCost();
+    auto otherCost = rhs.state->getCost();
+    if (thisCost != otherCost)
     {
-      return lhs.cost > rhs.cost;
+      return thisCost > otherCost;
     }
 
     // If the f values are equal, compare the h values
-    auto thisMD = lhs.state->getHeuristicValue();
-    auto otherMD = rhs.state->getHeuristicValue();
-
-    if (thisMD != otherMD)
+    auto thisHValue = lhs.state->getHeuristicValue();
+    auto otherHValue = rhs.state->getHeuristicValue();
+    if (thisHValue != otherHValue)
     {
-      return thisMD > otherMD;
+      return thisHValue > otherHValue;
     }
 
     // If the h values are equal, LIFO
@@ -83,7 +83,7 @@ class AStarOpenList : public OpenList
 {
 private:
   std::priority_queue<PriorityState, std::vector<PriorityState>, AStarPriorityComparator> queue;
-  unsigned long long insertionOrderCounter = 0;
+  unsigned int insertionOrderCounter = 0;
 
 public:
   void push(State *state) override;
@@ -96,9 +96,12 @@ struct GBFSPriorityComparator
   bool operator()(const PriorityState &lhs, const PriorityState &rhs) const
   {
     // Compare the h values of two states
-    if (lhs.cost != rhs.cost)
+    auto thisHValue = lhs.state->getHeuristicValue();
+    auto otherHValue = rhs.state->getHeuristicValue();
+
+    if (thisHValue != otherHValue)
     {
-      return lhs.cost > rhs.cost;
+      return thisHValue > otherHValue;
     }
 
     // If the h values are equal, compare the g values

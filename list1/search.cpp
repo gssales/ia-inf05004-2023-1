@@ -25,8 +25,7 @@ bool BFSOpenList::isEmpty()
 
 void AStarOpenList::push(State *state)
 {
-  int cost = state->getDepth() + state->getHeuristicValue();
-  PriorityState priorityState(state, cost, this->insertionOrderCounter++);
+  PriorityState priorityState(state, this->insertionOrderCounter++);
   this->queue.push(priorityState);
 }
 
@@ -38,7 +37,7 @@ PopResult AStarOpenList::pop()
   PopResult result{};
 
   result.state = priorityState.state;
-  result.cost = priorityState.cost;
+  result.cost = priorityState.state->getCost();
 
   return result;
 }
@@ -50,8 +49,7 @@ bool AStarOpenList::isEmpty()
 
 void GBFSOpenList::push(State *state)
 {
-  int cost = state->getHeuristicValue();
-  PriorityState priorityState(state, cost, this->insertionOrderCounter++);
+  PriorityState priorityState(state, this->insertionOrderCounter++);
   this->queue.push(priorityState);
 }
 
@@ -63,7 +61,7 @@ PopResult GBFSOpenList::pop()
   PopResult result{};
 
   result.state = priorityState.state;
-  result.cost = priorityState.cost;
+  result.cost = priorityState.state->getHeuristicValue();
 
   return result;
 }
