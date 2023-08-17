@@ -151,6 +151,8 @@ void AndOrGraph::weighted_most_conservative_valuation() {
             if (pred->type == NodeType::OR) {
                 int cost = pred->direct_cost + node->additive_cost;
                 if (cost < pred->additive_cost) {
+                    /**  exercise 2 (e): store achiever */
+                    pred->achiever = node->id;
                     pred->additive_cost = cost;
                     queue.push(make_pair(pred->additive_cost, pred->id));
                 }
