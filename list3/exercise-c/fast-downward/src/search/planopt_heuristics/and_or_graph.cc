@@ -122,6 +122,49 @@ void AndOrGraph::weighted_most_conservative_valuation() {
     /*
       TODO: add your code for exercise 2 (c) here.
     */
+    priority_queue<pair<int, NodeID>, vector<pair<int, NodeID>>, greater<pair<int, NodeID>>> queue;
+    for (AndOrGraphNode &node : nodes) {
+        node.forced_true = false;
+        node.num_forced_successors = 0;
+        node.additive_cost = std::numeric_limits<int>::max();
+        if (node.type == NodeType::AND && node.successor_ids.empty()) {
+            node.additive_cost = 0;
+            queue.push(make_pair(0, node.id));
+        }
+    }
+
+    while (!queue.empty())
+    {
+        auto pair = queue.top();
+        queue.pop();
+
+        auto node = &(this->nodes[pair.second]);
+        node->forced_true = true;
+
+        if (node->additive_cost < pair.first) 
+            continue;
+
+        for (auto &nid : node->predecessor_ids)
+        {
+            auto pred = &(this->nodes[nid]);
+            pred->num_forced_successors += 1;
+            if (pred->type == NodeType::OR) {
+                int cost = pred->direct_cost + node->additive_cost;
+                if (cost < pred->additive_cost) {
+                    pred->additive_cost = cost;
+                    queue.push(make_pair(pred->additive_cost, pred->id));
+                }
+            }
+            if (pred->type == NodeType::AND && pred->num_forced_successors == pred->successor_ids.size()) {
+                int cost = pred->direct_cost;
+                // to implement h^max, instead of summing up the additive_cost, we would get the max value
+                for (auto &sid : pred->successor_ids)
+                    cost += this->nodes[sid].additive_cost;
+                pred->additive_cost = cost;
+                queue.push(make_pair(pred->additive_cost, pred->id));
+            }
+        }
+    }
 }
 
 void add_nodes(vector<string> names, NodeType type, AndOrGraph &g, unordered_map<string, NodeID> &ids) {
