@@ -1,0 +1,20 @@
+---------------------------------------
+../castle/castle-4-3-5-cards.pddl
+Solution found!
+Plan length: 15 step(s).
+Expanded 263 state(s).
+Search time: 0.0532475s
+Total time: 0.0589229s
+---------------------------------------
+../castle/castle-5-4-7-cards.pddl
+Completely explored state space -- no solution!
+Expanded 6 state(s).
+Search time: 0.0049365s
+Total time: 0.0135548s
+---------------------------------------
+../castle/castle-6-4-7-cards.pddl
+Solution found!
+Plan length: 26 step(s).
+Expanded 24116 state(s).
+Search time: 27.2609s
+Total time: 27.2692s
