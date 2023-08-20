@@ -30,6 +30,18 @@ vector<vector<int>> build_compatibility_graph(const vector<Pattern> &patterns, c
     vector<vector<int>> graph(patterns.size());
 
     // TODO: add your code for exercise (d) here.
+    for (size_t i = 0; i < patterns.size(); i++) {
+        for (size_t j = 0; j < patterns.size(); j++) {
+            if (i != j) {
+                for (TNFOperator op : task.operators) {
+                    if (affects_pattern(op, patterns[i]) && affects_pattern(op, patterns[j])) {
+                        graph[i].push_back(j);
+                        break;
+                    }
+                }
+            }
+        }
+    }
 
     return graph;
 }
@@ -72,7 +84,17 @@ int CanonicalPatternDatabases::compute_heuristic(const TNFState &original_state)
        */
        int h = 0;
 
-       // TODO: add your code for exercise (d) here.
+       for (vector<int> clique : maximal_additive_sets) {
+           int sum = 0;
+
+           for (int i : clique) {
+               sum += heuristic_values[i];
+           }
+
+           if (sum > h) {
+               h = sum;
+           }
+       } 
 
        return h;
 }
