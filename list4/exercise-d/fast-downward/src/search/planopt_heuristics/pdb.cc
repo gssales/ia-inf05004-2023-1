@@ -1,6 +1,7 @@
 #include "pdb.h"
 
 #include "../utils/logging.h"
+#include "tnf_task.h"
 
 #include <queue>
 #include <limits> 
@@ -44,7 +45,43 @@ PatternDatabase::PatternDatabase(const TNFTask &task, const Pattern &pattern)
     */
     queue.push({0, projection.rank_state(projected_task.goal_state)});
 
-    // TODO: add your code for exercise (b) here.
+    while (!queue.empty()) {
+        QueueEntry entry = queue.top();
+        queue.pop();
+
+        int distance = entry.first;
+        int index = entry.second;
+        
+        if (distances[index] != numeric_limits<int>::max()) {
+            continue;
+        }
+
+        distances[index] = distance;
+        
+        TNFState state = projection.unrank_state(index);
+        
+        for (const TNFOperator &op : projected_task.operators) {
+            bool is_applicable = true;
+            TNFState predecessor = state;
+
+            for (const TNFOperatorEntry &entry : op.entries) {
+                if (state[entry.variable_id] != entry.effect_value) {
+                    is_applicable = false;
+                    break;
+                }
+
+                predecessor[entry.variable_id] = entry.precondition_value;
+            }
+
+            if (is_applicable) {
+                int predecessor_index = projection.rank_state(predecessor);
+                
+                if (distances[predecessor_index] == numeric_limits<int>::max()) {
+                    queue.push({distance + 1, predecessor_index});
+                }
+            }
+        }
+    }
 }
 
 int PatternDatabase::lookup_distance(const TNFState &original_state) const {
