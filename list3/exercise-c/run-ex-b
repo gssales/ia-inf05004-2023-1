@@ -6,12 +6,13 @@ for file in ./castle/castle*.pddl; do
     (
         ulimit -t 60
         ulimit -v 2000000
-        ./fast-downward/fast-downward.py $file --search "astar(blind())" | grep "Search time\|Plan length\|Expanded \d"
+        ./fast-downward/fast-downward.py $file --search "astar(blind())" | grep "Search time\|Plan length\|Expanded [[:digit:]]"
     )
     echo "PlanOpt-RTG implementation"
     (
         ulimit -t 60
         ulimit -v 2000000
-        ./fast-downward/fast-downward.py $file --search "astar(planopt_relaxed_task_graph())" | grep "Search time\|Plan length\|Expanded \d"
+        ./fast-downward/fast-downward.py $file --search "astar(planopt_relaxed_task_graph())" | grep "Search time\|Plan length\|Expanded [[:digit:]]"
     )
+    echo
 done
