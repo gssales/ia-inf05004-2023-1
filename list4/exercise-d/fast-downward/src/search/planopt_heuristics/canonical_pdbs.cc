@@ -34,7 +34,7 @@ vector<vector<int>> build_compatibility_graph(const vector<Pattern> &patterns, c
         for (size_t j = 0; j < patterns.size(); j++) {
             if (i != j) {
                 for (TNFOperator op : task.operators) {
-                    if (affects_pattern(op, patterns[i]) && affects_pattern(op, patterns[j])) {
+                    if (!(affects_pattern(op, patterns[i]) && affects_pattern(op, patterns[j]))) {
                         graph[i].push_back(j);
                         break;
                     }
