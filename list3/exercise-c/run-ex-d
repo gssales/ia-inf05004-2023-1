@@ -1,24 +1,26 @@
 #!/usr/bin/env bash
 
+METRICS="Search time\|Plan length\|Expanded [[:digit:]]"
+
 for file in ./castle/castle*.pddl; do
     echo "File: $file"
     echo "Optimal implementation"
     (
         ulimit -t 60
         ulimit -v 2000000
-        ./fast-downward/fast-downward.py $file --search "astar(lmcut())" --translate-options --relaxed | grep "Search time\|Initial heuristic\|Plan length"
+        ./fast-downward/fast-downward.py $file --search "astar(lmcut())" --translate-options --relaxed | grep "$METRICS"
     )
     echo "Blind implementation"
     (
         ulimit -t 60
         ulimit -v 2000000
-        ./fast-downward/fast-downward.py $file --search "eager_greedy([add()])" | grep "Search time\|Initial heuristic\|Plan length"
+        ./fast-downward/fast-downward.py $file --search "eager_greedy([add()])" | grep "$METRICS"
     )
     echo "PlanOpt implementation"
     (
         ulimit -t 60
         ulimit -v 2000000
-        ./fast-downward/fast-downward.py $file --search "eager_greedy([planopt_add()])" | grep "Search time\|Initial heuristic\|Plan length"
+        ./fast-downward/fast-downward.py $file --search "eager_greedy([planopt_add()])" | grep "$METRICS"
     )
     echo
 done
