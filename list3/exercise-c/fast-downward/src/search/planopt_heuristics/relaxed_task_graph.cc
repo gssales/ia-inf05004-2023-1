@@ -1,8 +1,9 @@
 #include "relaxed_task_graph.h"
+#include "and_or_graph.h"
 
+#include <deque>
 #include <iostream>
 #include <vector>
-#include <queue>
 
 using namespace std;
 
@@ -18,30 +19,38 @@ RelaxedTaskGraph::RelaxedTaskGraph(const TaskProxy &task_proxy)
         - the graph should contain precondition and effect nodes for all operators
         - the graph should contain all necessary edges.
     */
-    for (auto &p : this->relaxed_task.propositions)
-    {
-        NodeID nid = this->graph.add_node(NodeType::OR);
-        this->variable_node_ids[p.id] = nid;
+
+    // Add propositions as variable nodes.
+    for (Proposition p : relaxed_task.propositions) {
+        variable_node_ids[p.id] = graph.add_node(NodeType::OR);
     }
 
-    for (auto &o : this->relaxed_task.operators)
-    {
-        NodeID node = this->graph.add_node(NodeType::AND, o.cost);
-        for (PropositionID precond : o.preconditions)
-            this->graph.add_edge(node, this->variable_node_ids[precond]);
-        for (PropositionID effect : o.effects)
-            this->graph.add_edge(this->variable_node_ids[effect], node);
+    // Add initial node.
+    initial_node_id = graph.add_node(NodeType::AND);
+    for (PropositionID id : relaxed_task.initial_state) {
+        graph.add_edge(variable_node_ids[id], initial_node_id);
     }
-    
-    NodeID initial = this->graph.add_node(NodeType::AND);
-    this->initial_node_id = initial;
-    for (auto &i : this->relaxed_task.initial_state)
-        this->graph.add_edge(this->variable_node_ids[i], initial);
-   
-    NodeID goal = this->graph.add_node(NodeType::AND);
-    this->goal_node_id = goal;
-    for (auto &g : this->relaxed_task.goal)
-        this->graph.add_edge(goal, this->variable_node_ids[g]);
+
+    // Add goal node.
+    goal_node_id = graph.add_node(NodeType::AND);
+    for (PropositionID id : relaxed_task.goal) {
+        graph.add_edge(goal_node_id, variable_node_ids[id]);
+    }
+
+    // Add precondition and effect nodes for all operators.
+    for (const RelaxedOperator &op : relaxed_task.operators) {
+        NodeID preconditionNode = graph.add_node(NodeType::AND);
+        for (PropositionID id : op.preconditions) {
+            graph.add_edge(preconditionNode, variable_node_ids[id]);
+        }
+
+        NodeID effectNode = graph.add_node(NodeType::AND, op.cost);
+        for (PropositionID id : op.effects) {
+            graph.add_edge(variable_node_ids[id], effectNode);
+        }
+
+        graph.add_edge(effectNode, preconditionNode);
+    }
 }
 
 void RelaxedTaskGraph::change_initial_state(const GlobalState &global_state) {
@@ -82,22 +91,37 @@ int RelaxedTaskGraph::ff_cost_of_goal() {
 
     deque<NodeID> queue;
     queue.push_back(goal_node_id);
-    int cost_of_goal = 0;
+
+    unordered_set<NodeID> visited;
+
     while (!queue.empty()) {
-        auto node = graph.get_node(queue.front());
+        NodeID node_id = queue.front();
         queue.pop_front();
-        
-        cost_of_goal += node.direct_cost;
 
-        if (node.type == NodeType::AND)
-            for (auto &succ : node.successor_ids)
-                queue.push_back(succ);
+        if (visited.find(node_id) != visited.end()) {
+            continue;
+        }
+        visited.insert(node_id);
 
-        if (node.type == NodeType::OR)
+        const AndOrGraphNode &node = graph.get_node(node_id);
+
+        if (node.type == NodeType::OR) {
             queue.push_back(node.achiever);
+        } else {
+            for (NodeID succ: node.successor_ids) {
+                queue.push_back(succ);
+            }
+        }
     }
 
-    return cost_of_goal;
+    int cost = 0;
+
+    for (NodeID node_id : visited) {
+        const AndOrGraphNode &node = graph.get_node(node_id);
+        cost += node.direct_cost;
+    }
+
+    return cost;
 }
 
 }
