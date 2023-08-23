@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-METRICS="Search time\|Initial heuristic\|Plan length\|f ="
+METRICS="Initial heuristic value\|Search time\|Initial heuristic\|Plan length\|f ="
 
 for file in ./castle/castle*.pddl; do
     echo "File: $file"
@@ -16,13 +16,13 @@ for file in ./castle/castle*.pddl; do
         ulimit -v 2000000
         ./fast-downward/fast-downward.py $file --search "astar(lmcut())" --translate-options --relaxed | grep "$METRICS"
     )
-    echo "FF implementation"
+    echo "Built-in FF implementation"
     (
         ulimit -t 60
         ulimit -v 2000000
         ./fast-downward/fast-downward.py $file --search "eager_greedy([ff()])" | grep "$METRICS"
     )
-    echo "PlanOpt-FF implementation"
+    echo "PlanOpt FF implementation"
     (
         ulimit -t 60
         ulimit -v 2000000

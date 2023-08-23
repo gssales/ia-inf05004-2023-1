@@ -1,0 +1,134 @@
+File: ./castle/castle-10-6-7-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+
+File: ./castle/castle-12-7-3-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Expanded 4585 state(s).
+Search time: 0.03002s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Expanded 2520 state(s).
+Search time: 0.909972s
+
+File: ./castle/castle-16-9-1-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Expanded 22005 state(s).
+Search time: 0.139952s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Expanded 4382 state(s).
+Search time: 5.13912s
+
+File: ./castle/castle-2-2-8-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 4 step(s).
+Expanded 8 state(s).
+Search time: 0s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Plan length: 4 step(s).
+Expanded 8 state(s).
+Search time: 0s
+
+File: ./castle/castle-3-3-8-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 9 step(s).
+Expanded 84 state(s).
+Search time: 0s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Plan length: 9 step(s).
+Expanded 84 state(s).
+Search time: 0s
+
+File: ./castle/castle-4-3-5-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 15 step(s).
+Expanded 263 state(s).
+Search time: 0s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Plan length: 15 step(s).
+Expanded 263 state(s).
+Search time: 0.0100139s
+
+File: ./castle/castle-5-4-10-cards.pddl
+Blind implementation
+Initial heuristic value for blind: infinity
+Expanded 0 state(s).
+Search time: 0s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: infinity
+Expanded 0 state(s).
+Search time: 0s
+
+File: ./castle/castle-5-4-7-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Expanded 12 state(s).
+Search time: 0s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Expanded 6 state(s).
+Search time: 0s
+
+File: ./castle/castle-5-4-9-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 19 step(s).
+Expanded 7350 state(s).
+Search time: 0.0500205s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Plan length: 19 step(s).
+Expanded 7350 state(s).
+Search time: 0.279978s
+
+File: ./castle/castle-6-4-7-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 26 step(s).
+Expanded 24146 state(s).
+Search time: 0.130306s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Plan length: 26 step(s).
+Expanded 24022 state(s).
+Search time: 1.07s
+
+File: ./castle/castle-7-5-4-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 35 step(s).
+Expanded 3680953 state(s).
+Search time: 25.088s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+
+File: ./castle/castle-8-5-9-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Plan length: 39 step(s).
+Expanded 4839625 state(s).
+Search time: 34.101s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+
+File: ./castle/castle-9-6-5-cards.pddl
+Blind implementation
+Initial heuristic value for blind: 1
+Expanded 661 state(s).
+Search time: 0.0100062s
+PlanOpt RTG implementation
+Initial heuristic value for planopt_relaxed_task_graph: 1
+Expanded 206 state(s).
+Search time: 0.0599779s
+

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-METRICS="Search time\|Plan length\|Expanded [[:digit:]]"
+METRICS="Initial heuristic value\|Search time\|Plan length\|Expanded [[:digit:]]"
 
 for file in ./castle/castle*.pddl; do
     echo "File: $file"
@@ -10,7 +10,7 @@ for file in ./castle/castle*.pddl; do
         ulimit -v 2000000
         ./fast-downward/fast-downward.py $file --search "astar(blind())" | grep "$METRICS"
     )
-    echo "PlanOpt-RTG implementation"
+    echo "PlanOpt RTG implementation"
     (
         ulimit -t 60
         ulimit -v 2000000
