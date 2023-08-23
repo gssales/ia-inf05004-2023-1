@@ -1,0 +1,395 @@
+File: ./castle/castle-10-6-7-cards.pddl
+Optimal implementation
+f = 31 [1 evaluated, 0 expanded, t=0.0081172s, 13260 KB]
+Initial heuristic value for lmcut: 31
+f = 32 [6 evaluated, 1 expanded, t=0.0181662s, 13260 KB]
+f = 33 [8 evaluated, 2 expanded, t=0.0281176s, 13260 KB]
+f = 34 [18 evaluated, 5 expanded, t=0.0381178s, 13260 KB]
+f = 35 [30 evaluated, 12 expanded, t=0.0581178s, 13260 KB]
+f = 36 [38 evaluated, 21 expanded, t=0.0681176s, 13260 KB]
+f = 37 [97 evaluated, 39 expanded, t=0.178118s, 13260 KB]
+f = 38 [237 evaluated, 84 expanded, t=0.428118s, 13260 KB]
+f = 39 [441 evaluated, 168 expanded, 6 reopened, t=0.778113s, 13260 KB]
+f = 40 [792 evaluated, 318 expanded, 10 reopened, t=1.38811s, 13260 KB]
+f = 41 [1343 evaluated, 585 expanded, 15 reopened, t=2.35811s, 13260 KB]
+f = 42 [2108 evaluated, 994 expanded, 25 reopened, t=3.61811s, 13260 KB]
+f = 43 [3241 evaluated, 1683 expanded, 48 reopened, t=5.42811s, 13260 KB]
+f = 44 [4558 evaluated, 2591 expanded, 79 reopened, t=7.56811s, 13260 KB]
+f = 45 [6109 evaluated, 3718 expanded, 114 reopened, t=10.0181s, 13260 KB]
+f = 46 [8094 evaluated, 5023 expanded, 134 reopened, t=13.1381s, 13460 KB]
+f = 47 [10702 evaluated, 6814 expanded, 188 reopened, t=17.108s, 13460 KB]
+f = 48 [15298 evaluated, 9514 expanded, 273 reopened, t=23.958s, 13732 KB]
+f = 49 [21751 evaluated, 13367 expanded, 382 reopened, t=33.6779s, 14128 KB]
+f = 50 [32708 evaluated, 19634 expanded, 688 reopened, t=49.8679s, 15044 KB]
+Optimal-relaxed implementation
+f = 32 [1 evaluated, 0 expanded, t=0.011875s, 12988 KB]
+Initial heuristic value for lmcut: 32
+f = 33 [33 evaluated, 5 expanded, t=0.0818754s, 12988 KB]
+f = 34 [239 evaluated, 44 expanded, t=0.511876s, 12988 KB]
+f = 35 [1430 evaluated, 254 expanded, t=2.85186s, 12988 KB]
+f = 36 [6324 evaluated, 1001 expanded, t=12.2718s, 13256 KB]
+Built-in Add implementation
+Initial heuristic value for add: 2257
+Plan length: 82 step(s).
+Search time: 0.319963s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 2257
+Plan length: 82 step(s).
+Search time: 2.90994s
+
+File: ./castle/castle-12-7-3-cards.pddl
+Optimal implementation
+f = 39 [1 evaluated, 0 expanded, t=0.022771s, 14812 KB]
+Initial heuristic value for lmcut: 39
+f = 40 [16 evaluated, 5 expanded, t=0.0727206s, 14812 KB]
+f = 41 [19 evaluated, 7 expanded, t=0.0727206s, 14812 KB]
+f = 42 [97 evaluated, 32 expanded, t=0.322721s, 14812 KB]
+f = 43 [147 evaluated, 75 expanded, 14 reopened, t=0.462721s, 14812 KB]
+f = 44 [201 evaluated, 105 expanded, 14 reopened, t=0.602721s, 14812 KB]
+f = 45 [293 evaluated, 151 expanded, 16 reopened, t=0.822721s, 14812 KB]
+f = 46 [608 evaluated, 352 expanded, 51 reopened, t=1.70272s, 14812 KB]
+f = 47 [807 evaluated, 486 expanded, 66 reopened, t=2.24272s, 14812 KB]
+f = 48 [1112 evaluated, 776 expanded, 135 reopened, t=3.09271s, 14812 KB]
+f = 49 [1242 evaluated, 934 expanded, 157 reopened, t=3.45271s, 14812 KB]
+f = 50 [1407 evaluated, 1073 expanded, 159 reopened, t=3.91271s, 14812 KB]
+f = 51 [1609 evaluated, 1236 expanded, 162 reopened, t=4.53271s, 14812 KB]
+f = 52 [1783 evaluated, 1377 expanded, 164 reopened, t=4.98271s, 14812 KB]
+f = 53 [2052 evaluated, 1576 expanded, 174 reopened, t=5.66271s, 14812 KB]
+f = 54 [2302 evaluated, 1792 expanded, 187 reopened, t=6.28271s, 14812 KB]
+f = 55 [2545 evaluated, 1996 expanded, 200 reopened, t=6.84271s, 14812 KB]
+f = 56 [2767 evaluated, 2181 expanded, 214 reopened, t=7.35271s, 14812 KB]
+f = 57 [2972 evaluated, 2339 expanded, 222 reopened, t=7.80271s, 14812 KB]
+f = 58 [3127 evaluated, 2456 expanded, 223 reopened, t=8.11271s, 14812 KB]
+f = 59 [3263 evaluated, 2558 expanded, 223 reopened, t=8.39271s, 14812 KB]
+f = 60 [3333 evaluated, 2642 expanded, 223 reopened, t=8.52271s, 14812 KB]
+f = 61 [3366 evaluated, 2697 expanded, 223 reopened, t=8.58271s, 14812 KB]
+f = 62 [3386 evaluated, 2722 expanded, 223 reopened, t=8.62271s, 14812 KB]
+f = 63 [3391 evaluated, 2734 expanded, 223 reopened, t=8.62271s, 14812 KB]
+f = 64 [3391 evaluated, 2742 expanded, 223 reopened, t=8.62271s, 14812 KB]
+Search time: 8.60999s
+Optimal-relaxed implementation
+f = 39 [1 evaluated, 0 expanded, t=0.0191758s, 14552 KB]
+Initial heuristic value for lmcut: 39
+f = 40 [5 evaluated, 1 expanded, t=0.0391578s, 14552 KB]
+f = 41 [243 evaluated, 54 expanded, t=0.889158s, 14552 KB]
+f = 42 [6816 evaluated, 628 expanded, t=21.5391s, 14820 KB]
+Built-in Add implementation
+Initial heuristic value for add: 3348
+Search time: 0.329958s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 3348
+Search time: 3.24999s
+
+File: ./castle/castle-16-9-1-cards.pddl
+Optimal implementation
+f = 56 [1 evaluated, 0 expanded, t=0.042245s, 19108 KB]
+Initial heuristic value for lmcut: 56
+f = 57 [15 evaluated, 3 expanded, t=0.142245s, 19108 KB]
+f = 58 [87 evaluated, 32 expanded, t=0.662245s, 19108 KB]
+f = 59 [188 evaluated, 65 expanded, t=1.32035s, 19108 KB]
+f = 60 [357 evaluated, 127 expanded, 2 reopened, t=2.40035s, 19108 KB]
+f = 61 [628 evaluated, 240 expanded, 13 reopened, t=4.12034s, 19108 KB]
+f = 62 [970 evaluated, 376 expanded, 19 reopened, t=6.10034s, 19108 KB]
+f = 63 [1445 evaluated, 601 expanded, 46 reopened, t=9.11033s, 19108 KB]
+f = 64 [2063 evaluated, 971 expanded, 114 reopened, t=13.1203s, 19108 KB]
+f = 65 [2711 evaluated, 1357 expanded, 144 reopened, t=17.1003s, 19108 KB]
+f = 66 [3294 evaluated, 1748 expanded, 162 reopened, t=20.3903s, 19108 KB]
+f = 67 [3967 evaluated, 2275 expanded, 249 reopened, t=24.2903s, 19108 KB]
+f = 68 [4651 evaluated, 2751 expanded, 299 reopened, t=28.2703s, 19108 KB]
+f = 69 [5078 evaluated, 3110 expanded, 316 reopened, t=30.4403s, 19108 KB]
+f = 70 [5413 evaluated, 3394 expanded, 324 reopened, t=32.0903s, 19108 KB]
+f = 71 [5722 evaluated, 3639 expanded, 324 reopened, t=33.4203s, 19108 KB]
+f = 72 [6116 evaluated, 3872 expanded, 324 reopened, t=35.5503s, 19108 KB]
+f = 73 [6355 evaluated, 4046 expanded, 324 reopened, t=36.7103s, 19108 KB]
+f = 74 [6653 evaluated, 4243 expanded, 324 reopened, t=38.2303s, 19108 KB]
+f = 75 [6884 evaluated, 4399 expanded, 324 reopened, t=39.2703s, 19108 KB]
+f = 76 [7016 evaluated, 4495 expanded, 324 reopened, t=39.7803s, 19108 KB]
+f = 77 [7166 evaluated, 4585 expanded, 324 reopened, t=40.5103s, 19108 KB]
+f = 78 [7223 evaluated, 4622 expanded, 324 reopened, t=40.7603s, 19108 KB]
+f = 79 [7277 evaluated, 4666 expanded, 324 reopened, t=40.8903s, 19108 KB]
+f = 80 [7325 evaluated, 4694 expanded, 324 reopened, t=41.1403s, 19108 KB]
+f = 81 [7331 evaluated, 4700 expanded, 324 reopened, t=41.1403s, 19108 KB]
+Search time: 41.1081s
+Optimal-relaxed implementation
+f = 56 [1 evaluated, 0 expanded, t=0.0438043s, 18532 KB]
+Initial heuristic value for lmcut: 56
+f = 57 [21 evaluated, 4 expanded, t=0.253804s, 18532 KB]
+f = 58 [92 evaluated, 23 expanded, t=0.983804s, 18532 KB]
+f = 59 [550 evaluated, 126 expanded, t=5.45379s, 18532 KB]
+f = 60 [3015 evaluated, 648 expanded, t=28.5238s, 18532 KB]
+Built-in Add implementation
+Initial heuristic value for add: 10258
+Search time: 1.19877s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 10258
+Search time: 12.11s
+
+File: ./castle/castle-2-2-8-cards.pddl
+Optimal implementation
+f = 4 [1 evaluated, 0 expanded, t=0s, 9948 KB]
+Initial heuristic value for lmcut: 4
+Plan length: 4 step(s).
+Search time: 0s
+Optimal-relaxed implementation
+f = 4 [1 evaluated, 0 expanded, t=0s, 9948 KB]
+Initial heuristic value for lmcut: 4
+Plan length: 4 step(s).
+Search time: 0s
+Built-in Add implementation
+Initial heuristic value for add: 6
+Plan length: 4 step(s).
+Search time: 0s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 6
+Plan length: 4 step(s).
+Search time: 0s
+
+File: ./castle/castle-3-3-8-cards.pddl
+Optimal implementation
+f = 8 [1 evaluated, 0 expanded, t=0s, 10216 KB]
+Initial heuristic value for lmcut: 8
+f = 9 [9 evaluated, 2 expanded, t=0s, 10216 KB]
+Plan length: 9 step(s).
+Search time: 0s
+Optimal-relaxed implementation
+f = 8 [1 evaluated, 0 expanded, t=0.0026986s, 10096 KB]
+Initial heuristic value for lmcut: 8
+f = 9 [5 evaluated, 1 expanded, t=0.0026986s, 10096 KB]
+Plan length: 9 step(s).
+Search time: 0.0026986s
+Built-in Add implementation
+Initial heuristic value for add: 53
+Plan length: 9 step(s).
+Search time: 0s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 53
+Plan length: 9 step(s).
+Search time: 0s
+
+File: ./castle/castle-4-3-5-cards.pddl
+Optimal implementation
+f = 12 [1 evaluated, 0 expanded, t=0.0035273s, 10376 KB]
+Initial heuristic value for lmcut: 12
+f = 13 [6 evaluated, 2 expanded, t=0.0035273s, 10376 KB]
+f = 14 [9 evaluated, 5 expanded, t=0.0035273s, 10376 KB]
+f = 15 [59 evaluated, 27 expanded, 1 reopened, t=0.0035273s, 10376 KB]
+Plan length: 15 step(s).
+Search time: 0.0035273s
+Optimal-relaxed implementation
+f = 12 [1 evaluated, 0 expanded, t=0s, 10364 KB]
+Initial heuristic value for lmcut: 12
+f = 13 [40 evaluated, 8 expanded, t=0s, 10364 KB]
+f = 14 [242 evaluated, 50 expanded, t=0.0087664s, 10364 KB]
+Plan length: 14 step(s).
+Search time: 0.0087664s
+Built-in Add implementation
+Initial heuristic value for add: 161
+Plan length: 15 step(s).
+Search time: 0s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 161
+Plan length: 15 step(s).
+Search time: 0s
+
+File: ./castle/castle-5-4-10-cards.pddl
+Optimal implementation
+Initial heuristic value for lmcut: infinity
+Search time: 0s
+Optimal-relaxed implementation
+Initial heuristic value for lmcut: infinity
+Search time: 0s
+Built-in Add implementation
+Initial heuristic value for add: infinity
+Search time: 0s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: infinity
+Search time: 0s
+
+File: ./castle/castle-5-4-7-cards.pddl
+Optimal implementation
+f = 14 [1 evaluated, 0 expanded, t=0s, 10840 KB]
+Initial heuristic value for lmcut: 14
+f = 15 [8 evaluated, 3 expanded, t=0s, 10840 KB]
+f = 17 [11 evaluated, 5 expanded, t=0s, 10840 KB]
+Search time: 0s
+Optimal-relaxed implementation
+f = 12 [1 evaluated, 0 expanded, t=0s, 10812 KB]
+Initial heuristic value for lmcut: 12
+f = 13 [4 evaluated, 1 expanded, t=0s, 10812 KB]
+f = 14 [12 evaluated, 4 expanded, t=0s, 10812 KB]
+f = 15 [30 evaluated, 9 expanded, t=0.0097971s, 10812 KB]
+f = 16 [963 evaluated, 124 expanded, t=0.179797s, 10812 KB]
+f = 17 [14850 evaluated, 1786 expanded, t=2.36979s, 11644 KB]
+f = 18 [110208 evaluated, 13335 expanded, t=16.8395s, 16264 KB]
+Built-in Add implementation
+Initial heuristic value for add: 182
+Search time: 0s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 182
+Search time: 0s
+
+File: ./castle/castle-5-4-9-cards.pddl
+Optimal implementation
+f = 16 [1 evaluated, 0 expanded, t=0.0043572s, 10828 KB]
+Initial heuristic value for lmcut: 16
+f = 17 [4 evaluated, 1 expanded, t=0.0043572s, 10828 KB]
+f = 18 [49 evaluated, 17 expanded, t=0.0143569s, 10828 KB]
+f = 19 [71 evaluated, 30 expanded, t=0.0143569s, 10828 KB]
+Plan length: 19 step(s).
+Search time: 0.0300002s
+Optimal-relaxed implementation
+f = 15 [1 evaluated, 0 expanded, t=0.0019357s, 10816 KB]
+Initial heuristic value for lmcut: 15
+f = 16 [4 evaluated, 1 expanded, t=0.0019357s, 10816 KB]
+f = 17 [305 evaluated, 38 expanded, t=0.0519354s, 10816 KB]
+f = 18 [1638 evaluated, 200 expanded, t=0.221935s, 10816 KB]
+f = 19 [9970 evaluated, 1079 expanded, t=1.19193s, 11252 KB]
+Plan length: 19 step(s).
+Search time: 1.19999s
+Built-in Add implementation
+Initial heuristic value for add: 232
+Plan length: 21 step(s).
+Search time: 0s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 232
+Plan length: 21 step(s).
+Search time: 0.0091542s
+
+File: ./castle/castle-6-4-7-cards.pddl
+Optimal implementation
+f = 18 [1 evaluated, 0 expanded, t=0s, 11092 KB]
+Initial heuristic value for lmcut: 18
+f = 19 [6 evaluated, 1 expanded, t=0s, 11092 KB]
+f = 20 [44 evaluated, 16 expanded, t=0.0196492s, 11092 KB]
+f = 21 [94 evaluated, 43 expanded, t=0.0396492s, 11092 KB]
+f = 22 [185 evaluated, 90 expanded, t=0.059649s, 11092 KB]
+f = 23 [409 evaluated, 181 expanded, 1 reopened, t=0.119649s, 11092 KB]
+f = 24 [730 evaluated, 342 expanded, 2 reopened, t=0.18965s, 11092 KB]
+f = 25 [1400 evaluated, 719 expanded, 10 reopened, t=0.339649s, 11092 KB]
+f = 26 [2242 evaluated, 1290 expanded, 19 reopened, t=0.499649s, 11092 KB]
+Plan length: 26 step(s).
+Search time: 0.509649s
+Optimal-relaxed implementation
+f = 18 [1 evaluated, 0 expanded, t=0.0017639s, 11048 KB]
+Initial heuristic value for lmcut: 18
+f = 19 [6 evaluated, 1 expanded, t=0.0017639s, 11048 KB]
+f = 20 [56 evaluated, 12 expanded, t=0.0317639s, 11048 KB]
+f = 21 [948 evaluated, 204 expanded, t=0.381761s, 11048 KB]
+f = 22 [7165 evaluated, 1248 expanded, t=2.37176s, 11216 KB]
+f = 23 [78321 evaluated, 10704 expanded, t=22.5917s, 15712 KB]
+Built-in Add implementation
+Initial heuristic value for add: 555
+Plan length: 26 step(s).
+Search time: 0.0100419s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 555
+Plan length: 26 step(s).
+Search time: 0.0199997s
+
+File: ./castle/castle-7-5-4-cards.pddl
+Optimal implementation
+f = 24 [1 evaluated, 0 expanded, t=0.0078541s, 11780 KB]
+Initial heuristic value for lmcut: 24
+f = 25 [20 evaluated, 8 expanded, t=0.0178877s, 11780 KB]
+f = 26 [34 evaluated, 16 expanded, t=0.0278538s, 11780 KB]
+f = 27 [71 evaluated, 51 expanded, 9 reopened, t=0.0578537s, 11780 KB]
+f = 28 [103 evaluated, 81 expanded, 12 reopened, t=0.0678537s, 11780 KB]
+f = 29 [198 evaluated, 135 expanded, 18 reopened, t=0.127853s, 11780 KB]
+f = 30 [322 evaluated, 199 expanded, 20 reopened, t=0.187854s, 11780 KB]
+f = 31 [585 evaluated, 316 expanded, 21 reopened, t=0.297854s, 11780 KB]
+f = 32 [1214 evaluated, 597 expanded, 37 reopened, t=0.557854s, 11780 KB]
+f = 33 [2831 evaluated, 1273 expanded, 83 reopened, t=1.12785s, 11780 KB]
+f = 34 [6975 evaluated, 2933 expanded, 161 reopened, t=2.32785s, 11952 KB]
+f = 35 [17946 evaluated, 7342 expanded, 429 reopened, t=5.04784s, 12548 KB]
+Plan length: 35 step(s).
+Search time: 5.03998s
+Optimal-relaxed implementation
+f = 24 [1 evaluated, 0 expanded, t=0.009608s, 11680 KB]
+Initial heuristic value for lmcut: 24
+f = 25 [5 evaluated, 1 expanded, t=0.009608s, 11680 KB]
+f = 26 [105 evaluated, 23 expanded, t=0.0896079s, 11680 KB]
+Built-in Add implementation
+Initial heuristic value for add: 595
+Plan length: 40 step(s).
+Search time: 0.0200339s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 595
+Plan length: 40 step(s).
+Search time: 0.0999998s
+
+File: ./castle/castle-8-5-9-cards.pddl
+Optimal implementation
+f = 23 [1 evaluated, 0 expanded, t=0.0014623s, 12084 KB]
+Initial heuristic value for lmcut: 23
+f = 24 [3 evaluated, 1 expanded, t=0.0114627s, 12084 KB]
+f = 25 [24 evaluated, 8 expanded, t=0.0215259s, 12084 KB]
+f = 26 [50 evaluated, 19 expanded, t=0.0314627s, 12084 KB]
+f = 27 [82 evaluated, 33 expanded, t=0.0514627s, 12084 KB]
+f = 28 [149 evaluated, 60 expanded, t=0.0914629s, 12084 KB]
+f = 29 [216 evaluated, 87 expanded, 1 reopened, t=0.141463s, 12084 KB]
+f = 30 [345 evaluated, 144 expanded, 3 reopened, t=0.221463s, 12084 KB]
+f = 31 [535 evaluated, 249 expanded, 3 reopened, t=0.351463s, 12084 KB]
+f = 32 [746 evaluated, 381 expanded, 7 reopened, t=0.461495s, 12084 KB]
+f = 33 [904 evaluated, 506 expanded, 10 reopened, t=0.561463s, 12084 KB]
+f = 34 [1111 evaluated, 662 expanded, 14 reopened, t=0.691463s, 12084 KB]
+f = 35 [1768 evaluated, 1050 expanded, 70 reopened, t=1.04145s, 12084 KB]
+f = 36 [2496 evaluated, 1473 expanded, 87 reopened, t=1.40145s, 12084 KB]
+f = 37 [3826 evaluated, 2208 expanded, 109 reopened, t=1.99144s, 12084 KB]
+f = 38 [7949 evaluated, 3955 expanded, 177 reopened, t=3.44144s, 12420 KB]
+f = 39 [19234 evaluated, 8886 expanded, 505 reopened, t=6.9414s, 12952 KB]
+Plan length: 39 step(s).
+Search time: 6.93994s
+Optimal-relaxed implementation
+f = 23 [1 evaluated, 0 expanded, t=0.003752s, 11996 KB]
+Initial heuristic value for lmcut: 23
+f = 24 [6 evaluated, 2 expanded, t=0.0137038s, 11996 KB]
+f = 25 [197 evaluated, 32 expanded, t=0.173704s, 11996 KB]
+f = 26 [1565 evaluated, 260 expanded, t=1.2437s, 11996 KB]
+f = 27 [5689 evaluated, 1001 expanded, t=4.50369s, 12148 KB]
+f = 28 [23624 evaluated, 3739 expanded, t=17.8136s, 13392 KB]
+Built-in Add implementation
+Initial heuristic value for add: 1704
+Plan length: 46 step(s).
+Search time: 0.0199549s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 1704
+Plan length: 46 step(s).
+Search time: 0.14s
+
+File: ./castle/castle-9-6-5-cards.pddl
+Optimal implementation
+f = 32 [1 evaluated, 0 expanded, t=0.0143597s, 12872 KB]
+Initial heuristic value for lmcut: 32
+f = 35 [5 evaluated, 2 expanded, t=0.0143597s, 12872 KB]
+f = 36 [6 evaluated, 3 expanded, t=0.0143597s, 12872 KB]
+f = 37 [31 evaluated, 12 expanded, t=0.0443594s, 12872 KB]
+f = 38 [37 evaluated, 16 expanded, t=0.0543596s, 12872 KB]
+f = 39 [84 evaluated, 35 expanded, t=0.10436s, 12872 KB]
+f = 40 [149 evaluated, 66 expanded, 1 reopened, t=0.174359s, 12872 KB]
+f = 41 [181 evaluated, 85 expanded, 1 reopened, t=0.21436s, 12872 KB]
+f = 42 [232 evaluated, 111 expanded, 1 reopened, t=0.27436s, 12872 KB]
+f = 43 [257 evaluated, 128 expanded, 1 reopened, t=0.29436s, 12872 KB]
+f = 44 [280 evaluated, 141 expanded, 1 reopened, t=0.32436s, 12872 KB]
+f = 45 [304 evaluated, 153 expanded, 1 reopened, t=0.34436s, 12872 KB]
+f = 46 [317 evaluated, 163 expanded, 1 reopened, t=0.35436s, 12872 KB]
+f = 47 [330 evaluated, 175 expanded, 1 reopened, t=0.36436s, 12872 KB]
+f = 48 [339 evaluated, 181 expanded, 1 reopened, t=0.36436s, 12872 KB]
+f = 49 [349 evaluated, 189 expanded, 1 reopened, t=0.37436s, 12872 KB]
+f = 50 [355 evaluated, 193 expanded, 1 reopened, t=0.37436s, 12872 KB]
+f = 51 [363 evaluated, 196 expanded, 1 reopened, t=0.38436s, 12872 KB]
+f = 52 [373 evaluated, 201 expanded, 1 reopened, t=0.39436s, 12872 KB]
+f = 53 [379 evaluated, 204 expanded, 1 reopened, t=0.39436s, 12872 KB]
+f = 54 [383 evaluated, 206 expanded, 1 reopened, t=0.39436s, 12872 KB]
+Search time: 0.39s
+Optimal-relaxed implementation
+f = 32 [1 evaluated, 0 expanded, t=0.0135209s, 12592 KB]
+Initial heuristic value for lmcut: 32
+f = 33 [9 evaluated, 3 expanded, t=0.0235207s, 12592 KB]
+f = 34 [27 evaluated, 9 expanded, t=0.0535208s, 12592 KB]
+Built-in Add implementation
+Initial heuristic value for add: 2001
+Search time: 0.0199287s
+PlanOpt Add implementation
+Initial heuristic value for planopt_add: 2001
+Search time: 0.17s
+

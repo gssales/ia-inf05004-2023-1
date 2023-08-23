@@ -1,3 +1,0 @@
-../castle/castle-4-3-5-cards.pddl
-../castle/castle-5-4-7-cards.pddl
-../castle/castle-6-4-7-cards.pddl

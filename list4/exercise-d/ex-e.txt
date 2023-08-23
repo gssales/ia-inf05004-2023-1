@@ -2,79 +2,85 @@ instance 1 with k=1000
 [[0, 2, 3, 4]]
 Built-in implementation
 Expanded until last jump: 43 state(s).
-Search time: 0.000221082s
-Total time: 0.00570726s
+Search time: 0s
+Total time: 0s
 Built-in PDB implementation
 Expanded until last jump: 43 state(s).
-Search time: 0.000244917s
-Total time: 0.00646871s
+Search time: 0s
+Total time: 0.0010243s
 PlanOpt implementation
 Expanded until last jump: 43 state(s).
-Search time: 0.000301166s
-Total time: 0.0116276s
+Search time: 0s
+Total time: 0s
 
 instance 2 with k=1000
 [[3, 4, 5], [2]]
 Built-in implementation
 Expanded until last jump: 2406 state(s).
-Search time: 0.00437575s
-Total time: 0.0115774s
+Search time: 0.0069176s
+Total time: 0.0069176s
 Built-in PDB implementation
 Expanded until last jump: 10405 state(s).
-Search time: 0.0151931s
-Total time: 0.0226673s
+Search time: 0.0199999s
+Total time: 0.0221471s
 PlanOpt implementation
-Expanded until last jump: 10072 state(s).
-Search time: 0.0161157s
-Total time: 0.0239656s
+Expanded until last jump: 2406 state(s).
+Search time: 0s
+Total time: 0.0030607s
 
 instance 3 with k=1000
 [[4, 5, 6], [2], [3]]
 Built-in implementation
 Expanded until last jump: 2231 state(s).
-Search time: 0.00109108s
-Total time: 0.00782512s
+Search time: 0.0041573s
+Total time: 0.0041573s
 Built-in PDB implementation
 Expanded until last jump: 31011 state(s).
-Search time: 0.0440038s
-Total time: 0.0505355s
+Search time: 0.0472109s
+Total time: 0.0472109s
 PlanOpt implementation
-Expanded until last jump: 30128 state(s).
-Search time: 0.0541952s
-Total time: 0.0613473s
+Expanded until last jump: 2231 state(s).
+Search time: 0s
+Total time: 0.0022657s
 
 instance 4 with k=1000
 [[5, 6, 7], [2], [3], [4]]
 Built-in implementation
 Expanded until last jump: 31350 state(s).
-Search time: 0.0781412s
-Total time: 0.0865845s
+Search time: 0.0886668s
+Total time: 0.0886668s
 Built-in PDB implementation
 Expanded until last jump: 1379615 state(s).
-Search time: 2.45059s
-Total time: 2.45892s
+Search time: 2.64812s
+Total time: 2.65365s
 PlanOpt implementation
-Expanded until last jump: 1352130 state(s).
-Search time: 3.0841s
-Total time: 3.0945s
+Expanded until last jump: 31350 state(s).
+Search time: 0.0860453s
+Total time: 0.0870939s
 
 instance 5 with k=1000
 [[6, 7, 8], [2], [3], [4], [5]]
 Built-in implementation
 Expanded until last jump: 391698 state(s).
-Search time: 1.07474s
-Total time: 1.08853s
+Search time: 1.19s
+Total time: 1.19792s
 Built-in PDB implementation
 PlanOpt implementation
+Expanded until last jump: 391698 state(s).
+Search time: 1.3s
+Total time: 1.30734s
 
 instance 6 with k=1000
 [[7, 8, 9], [2], [3], [4], [5], [6]]
 Built-in implementation
 Expanded until last jump: 3323144 state(s).
-Search time: 12.8055s
-Total time: 12.8256s
+Search time: 11.7699s
+Total time: 11.7835s
 Built-in PDB implementation
 PlanOpt implementation
+Expanded until last jump: 3323144 state(s).
+Search time: 13.0699s
+Total time: 13.0796s
 
 instance 7 with k=1000
 [[9, 10], [2], [3], [4], [5], [6], [7], [8]]

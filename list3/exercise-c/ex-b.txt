@@ -8,21 +8,21 @@ File: ./castle/castle-12-7-3-cards.pddl
 Blind implementation
 Initial heuristic value for blind: 1
 Expanded 4585 state(s).
-Search time: 0.03002s
+Search time: 0.0199411s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 Expanded 2520 state(s).
-Search time: 0.909972s
+Search time: 0.579957s
 
 File: ./castle/castle-16-9-1-cards.pddl
 Blind implementation
 Initial heuristic value for blind: 1
 Expanded 22005 state(s).
-Search time: 0.139952s
+Search time: 0.0900004s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 Expanded 4382 state(s).
-Search time: 5.13912s
+Search time: 2.14s
 
 File: ./castle/castle-2-2-8-cards.pddl
 Blind implementation
@@ -58,7 +58,7 @@ PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 Plan length: 15 step(s).
 Expanded 263 state(s).
-Search time: 0.0100139s
+Search time: 0s
 
 File: ./castle/castle-5-4-10-cards.pddl
 Blind implementation
@@ -85,31 +85,31 @@ Blind implementation
 Initial heuristic value for blind: 1
 Plan length: 19 step(s).
 Expanded 7350 state(s).
-Search time: 0.0500205s
+Search time: 0.0200415s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 Plan length: 19 step(s).
 Expanded 7350 state(s).
-Search time: 0.279978s
+Search time: 0.209996s
 
 File: ./castle/castle-6-4-7-cards.pddl
 Blind implementation
 Initial heuristic value for blind: 1
 Plan length: 26 step(s).
 Expanded 24146 state(s).
-Search time: 0.130306s
+Search time: 0.08s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 Plan length: 26 step(s).
 Expanded 24022 state(s).
-Search time: 1.07s
+Search time: 0.810005s
 
 File: ./castle/castle-7-5-4-cards.pddl
 Blind implementation
 Initial heuristic value for blind: 1
 Plan length: 35 step(s).
 Expanded 3680953 state(s).
-Search time: 25.088s
+Search time: 15.2054s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 
@@ -118,7 +118,7 @@ Blind implementation
 Initial heuristic value for blind: 1
 Plan length: 39 step(s).
 Expanded 4839625 state(s).
-Search time: 34.101s
+Search time: 20.4664s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 
@@ -126,9 +126,9 @@ File: ./castle/castle-9-6-5-cards.pddl
 Blind implementation
 Initial heuristic value for blind: 1
 Expanded 661 state(s).
-Search time: 0.0100062s
+Search time: 0s
 PlanOpt RTG implementation
 Initial heuristic value for planopt_relaxed_task_graph: 1
 Expanded 206 state(s).
-Search time: 0.0599779s
+Search time: 0.0399996s
 
