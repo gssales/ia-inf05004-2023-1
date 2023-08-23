@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-METRICS="Search time\|Initial heuristic\|Plan length"
+METRICS="Search time\|Initial heuristic\|Plan length\|f ="
 
 for file in ./castle/castle*.pddl; do
     echo "File: $file"
