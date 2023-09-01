@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 
     if (algorithm == "bfs")
     {
-      result = search<BFSOpenList>(initialState);
+      result = search<BFSOpenList>(initialState, true);
       result.heuristicValues = std::vector<int>(1, 0);
     }
     else if (algorithm == "astar")

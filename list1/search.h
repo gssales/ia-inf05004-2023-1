@@ -157,7 +157,7 @@ public:
 };
 
 template <class T>
-SearchResult search(State *initialState)
+SearchResult search(State *initialState, bool earlyExit = false)
 {
   SearchResult result{};
   result.state = nullptr;
@@ -186,16 +186,24 @@ SearchResult search(State *initialState)
       }
 
       std::list<State *> children = state->getChildren();
+      result.expandedNodes++;
 
       for (auto it : children)
       {
         result.heuristicValues.push_back(it->getHeuristicValue());
+
+        if (earlyExit && it->isGoal())
+        {
+          result.state = it;
+          goto endwhilesearch;
+        }
+
         openList.push(it);
       }
 
-      result.expandedNodes++;
     }
   }
+endwhilesearch:
 
   return result;
 }
